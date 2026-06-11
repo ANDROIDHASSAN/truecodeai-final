@@ -6,8 +6,8 @@ export const site = {
   name: 'TrueCodeAI',
   tagline: 'The studio that builds anything.',
   location: 'Nashik, India · Remote-first · Worldwide',
-  email: 'hello@truecodeai.com',
-  whatsapp: 'https://wa.me/0000000000',
+  email: 'truecodeai@gmail.com',
+  whatsapp: 'https://wa.me/919716978692',
 };
 
 export const nav = [
@@ -130,14 +130,6 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    name: 'HappyWedz',
-    category: 'Wedding Platform',
-    metric: '50,000+ active users',
-    blurb: 'A wedding platform connecting couples with vendors at national scale.',
-    image:
-      'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1800&auto=format&fit=crop',
-  },
-  {
     name: 'Interify',
     category: 'Interior Design CRM',
     metric: '10,000+ users',
@@ -152,15 +144,6 @@ export const projects: Project[] = [
     blurb: 'A point-of-sale and CRM tailored for neighbourhood chai shops.',
     image:
       'https://images.unsplash.com/photo-1571934811356-5cc061b6821f?q=80&w=1800&auto=format&fit=crop',
-  },
-  {
-    name: 'WapZio',
-    category: 'WhatsApp Business Suite',
-    metric: 'In development',
-    status: 'building',
-    blurb: 'A WhatsApp-first communication tool for businesses that live in chat.',
-    image:
-      'https://images.unsplash.com/photo-1611746872915-64382b5c76da?q=80&w=1800&auto=format&fit=crop',
   },
   {
     name: 'Nischay Shrivastav',
@@ -221,14 +204,6 @@ export type Review = {
 };
 
 export const reviews: Review[] = [
-  {
-    quote:
-      'We came with a pitch deck and left with a product 50,000 people use. They argued with us when we were wrong — that alone was worth the fee.',
-    name: 'Arjun Mehta',
-    role: 'Founder, HappyWedz',
-    avatar:
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop',
-  },
   {
     quote:
       'Their voice agent answers every call to our clinics. Bookings happen at 2am now. It paid for itself inside the first month.',

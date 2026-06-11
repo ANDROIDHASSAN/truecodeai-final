@@ -63,7 +63,9 @@ export default function Contact() {
 
         <div className="cta-el mt-12 flex flex-wrap items-center justify-center gap-3">
           <a
-            href={`mailto:${site.email}`}
+            href={site.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-3 bg-[#ff6a1a] text-black font-medium rounded-full px-9 h-14 text-base transition-transform duration-500 hover:scale-105"
           >
             {contact.ctaPrimary}

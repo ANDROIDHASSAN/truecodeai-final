@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { screenshots } from '../data/site';
 import { useReveal } from '../smooth/SmoothScroll';
+import screen1 from '../img/hero/screen1.webp';
 
 function Frame({ src, url }: { src: string; url: string }) {
   return (
@@ -54,10 +55,8 @@ export default function Screenshots() {
   });
 
   const urls = [
-    'app.happywedz.com/dashboard',
     'interify.app/projects',
     'cupcount.in/pos',
-    'wapzio.com/inbox',
     'console.truecodeai.com',
     'studio.truecodeai.com/agents',
     'ml.truecodeai.com/training',
@@ -91,6 +90,7 @@ export default function Screenshots() {
 
       <div className="relative mt-16 space-y-6 -rotate-1">
         <div className="shot-row-a flex gap-6 w-max pl-6">
+          <Frame src={screen1} url="truecodeai.com/dashboard" />
           {screenshots.rowA.map((src, i) => (
             <Frame key={src} src={src} url={urls[i]} />
           ))}

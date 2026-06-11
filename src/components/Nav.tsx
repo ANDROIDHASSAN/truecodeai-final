@@ -70,8 +70,9 @@ export default function Nav() {
 
           <div className="flex items-center gap-2">
             <a
-              href="#contact"
-              onClick={go('#contact')}
+              href={site.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-fill hidden sm:inline-flex items-center rounded-full border border-white/25 px-5 h-9 text-sm font-medium text-white"
             >
               start a build
@@ -111,10 +112,12 @@ export default function Nav() {
           ))}
           <div className="line-mask mt-12">
             <a
-              href={`mailto:${site.email}`}
+              href={site.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
               className="menu-link block font-serif-i text-2xl accent"
             >
-              {site.email}
+              start a build
             </a>
           </div>
         </div>
