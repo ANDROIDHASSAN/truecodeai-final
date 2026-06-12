@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import 'locomotive-scroll/dist/locomotive-scroll.css';
+import 'lenis/dist/lenis.css';
 import './index.css';
 
 // StrictMode is intentionally omitted: its double-mount in dev re-initialises

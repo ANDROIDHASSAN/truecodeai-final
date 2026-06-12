@@ -8,141 +8,83 @@ import {
 } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Lenis from 'lenis';
 
 gsap.registerPlugin(ScrollTrigger);
 
-type SmoothCtx = {
-  /** the locomotive scroll container element (the ScrollTrigger scroller) */
-  el: HTMLElement | null;
-  /** the live LocomotiveScroll instance */
-  scroll: any | null;
-  /** true once locomotive + ScrollTrigger proxy are wired up */
-  ready: boolean;
-};
+type SmoothCtx = { ready: boolean };
 
-const Ctx = createContext<SmoothCtx>({ el: null, scroll: null, ready: false });
-
+const Ctx = createContext<SmoothCtx>({ ready: false });
 export const useSmoothScroll = () => useContext(Ctx);
 
 /**
- * Module-level handle to the live locomotive instance, for components that
- * live OUTSIDE the scroll container (e.g. the fixed Nav) and can't use context.
+ * Module-level handle to the live Lenis instance — used by Nav (outside the
+ * Provider tree) for programmatic scrollTo on link clicks.
  */
-export const loco: { current: any | null } = { current: null };
+export const loco: { current: Lenis | null } = { current: null };
 
 /**
- * Scoped GSAP reveal hook. Waits until Locomotive is ready, then runs `build`
- * inside a gsap.context scoped to `scopeRef`, with the locomotive container
- * pre-wired as the ScrollTrigger scroller via gsap defaults.
+ * Scoped GSAP reveal hook. Waits until Lenis is ready, then runs `build`
+ * inside a gsap.context scoped to `scopeRef`. Passes `window` as the
+ * scroller so every ScrollTrigger inside just uses native scroll position.
  */
 export function useReveal(
-  scopeRef: React.RefObject<HTMLElement>,
-  build: (scroller: HTMLElement) => void,
+  scopeRef: React.RefObject<HTMLElement | null>,
+  build: (scroller: Window & typeof globalThis) => void,
 ) {
-  const { el, ready } = useSmoothScroll();
+  const { ready } = useSmoothScroll();
   useEffect(() => {
-    if (!ready || !el || !scopeRef.current) return;
-    const ctx = gsap.context(() => build(el), scopeRef);
-    // a refresh after each section registers keeps positions accurate
+    if (!ready || !scopeRef.current) return;
+    const ctx = gsap.context(() => build(window), scopeRef);
     ScrollTrigger.refresh();
     return () => ctx.revert();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ready, el]);
+  }, [ready]);
 }
 
 export function SmoothScroll({ children }: { children: ReactNode }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [state, setState] = useState<SmoothCtx>({
-    el: null,
-    scroll: null,
-    ready: false,
-  });
+  const [ready, setReady] = useState(false);
+  // stable ref so we can remove the exact same ticker fn on cleanup
+  const tickerFn = useRef<(time: number) => void>(null!);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    let locomotive: any;
-    let killed = false;
-
     const reduceMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)',
     ).matches;
 
-    (async () => {
-      const LocomotiveScroll = (await import('locomotive-scroll')).default;
-      if (killed) return;
+    const lenis = new Lenis({
+      duration: 1.4,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: !reduceMotion,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+      infinite: false,
+    });
 
-      locomotive = new LocomotiveScroll({
-        el: container,
-        smooth: !reduceMotion,
-        lerp: 0.085,
-        multiplier: 1,
-        smartphone: { smooth: false },
-        tablet: { smooth: false },
-      });
+    loco.current = lenis;
 
-      // keep ScrollTrigger in sync with locomotive's virtual scroll
-      locomotive.on('scroll', ScrollTrigger.update);
+    // sync Lenis RAF with GSAP's ticker — single rAF loop, no jank
+    tickerFn.current = (time: number) => lenis.raf(time * 1000);
+    gsap.ticker.add(tickerFn.current);
+    gsap.ticker.lagSmoothing(0);
 
-      ScrollTrigger.scrollerProxy(container, {
-        scrollTop(value?: number) {
-          return arguments.length
-            ? locomotive.scrollTo(value, { duration: 0, disableLerp: true })
-            : locomotive.scroll.instance.scroll.y;
-        },
-        getBoundingClientRect() {
-          return {
-            top: 0,
-            left: 0,
-            width: window.innerWidth,
-            height: window.innerHeight,
-          };
-        },
-        pinType: (container.style as any).transform ? 'transform' : 'fixed',
-      });
+    // keep ScrollTrigger positions accurate on every scroll tick
+    lenis.on('scroll', ScrollTrigger.update);
 
-      // every ScrollTrigger in the app should default to this scroller
-      ScrollTrigger.defaults({ scroller: container });
+    // recompute after fonts / images settle
+    const onLoad = () => ScrollTrigger.refresh();
+    window.addEventListener('load', onLoad);
 
-      const refresh = () => locomotive.update();
-      ScrollTrigger.addEventListener('refresh', refresh);
-
-      // recompute once fonts / late layout settle
-      const onLoad = () => {
-        locomotive.update();
-        ScrollTrigger.refresh();
-      };
-      window.addEventListener('load', onLoad);
-
-      ScrollTrigger.refresh();
-      loco.current = locomotive;
-      (window as any).__loco = locomotive;
-      setState({ el: container, scroll: locomotive, ready: true });
-
-      // store cleanup for the late listeners
-      (locomotive as any).__cleanup = () => {
-        ScrollTrigger.removeEventListener('refresh', refresh);
-        window.removeEventListener('load', onLoad);
-      };
-    })();
+    setReady(true);
 
     return () => {
-      killed = true;
+      lenis.destroy();
       loco.current = null;
+      gsap.ticker.remove(tickerFn.current);
+      window.removeEventListener('load', onLoad);
       ScrollTrigger.getAll().forEach((t) => t.kill());
-      if (locomotive) {
-        locomotive.__cleanup?.();
-        locomotive.destroy();
-      }
     };
   }, []);
 
-  return (
-    <Ctx.Provider value={state}>
-      <div ref={containerRef} data-scroll-container>
-        {children}
-      </div>
-    </Ctx.Provider>
-  );
+  return <Ctx.Provider value={{ ready }}>{children}</Ctx.Provider>;
 }
