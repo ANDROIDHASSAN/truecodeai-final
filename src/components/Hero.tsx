@@ -73,8 +73,10 @@ export default function Hero() {
         key={current}
         className="absolute inset-0 w-full h-full object-cover"
         src={SLIDES[current]}
-        alt=""
-        aria-hidden
+        alt="TrueCodeAI — software studio background"
+        fetchPriority="high"
+        loading="eager"
+        decoding="async"
       />
 
       {/* Previous slide fading out on top */}
@@ -86,6 +88,7 @@ export default function Hero() {
           src={SLIDES[prev]}
           alt=""
           aria-hidden
+          loading="lazy"
         />
       )}
 

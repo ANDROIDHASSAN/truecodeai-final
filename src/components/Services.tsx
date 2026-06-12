@@ -79,7 +79,7 @@ export default function Services() {
           <img
             key={c.n}
             src={c.image}
-            alt=""
+            alt={c.title}
             loading="lazy"
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${active === i ? 'opacity-100' : 'opacity-0'}`}
           />
