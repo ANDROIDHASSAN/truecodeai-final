@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Script from 'next/script';
 import { solutions, getSolutionBySlug } from '@/content/solutions';
 import { site } from '@/data/site';
-import { servicePageJsonLd, faqJsonLd } from '@/lib/jsonld';
+import { servicePageJsonLd } from '@/lib/jsonld';
 
 export const revalidate = 86400;
 
@@ -39,6 +39,7 @@ export default async function SolutionPage({ params }: Props) {
 
   const related = solutions.filter((s) => sol.related.includes(s.slug));
 
+  // servicePageJsonLd already bundles FAQ inside @graph — no second script needed
   const serviceSchema = JSON.stringify(servicePageJsonLd({
     name: sol.title,
     description: sol.metaDescription,
@@ -50,15 +51,11 @@ export default async function SolutionPage({ params }: Props) {
     ],
     faq: sol.faq,
   }));
-  const faqSchema = JSON.stringify(faqJsonLd(sol.faq));
 
   return (
     <>
       <Script id={`sol-schema-${slug}`} type="application/ld+json" strategy="beforeInteractive">
         {serviceSchema}
-      </Script>
-      <Script id={`faq-schema-${slug}`} type="application/ld+json" strategy="beforeInteractive">
-        {faqSchema}
       </Script>
 
       <main className="min-h-screen bg-[#060607] text-white">
