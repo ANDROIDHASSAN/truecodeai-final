@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   description:
     'See how TrueCodeAI custom automation compares to off-the-shelf tools like Zapier, HubSpot, and industry-specific SaaS — and when custom beats generic.',
   alternates: { canonical: 'https://truecodeai.com/compare' },
+  // noindex until comparison content is ready — prevents GSC thin-content penalty
+  robots: { index: false, follow: true },
 };
 
 export default function CompareHubPage() {

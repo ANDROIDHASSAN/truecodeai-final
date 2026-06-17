@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { posts } from '@/content/posts';
 
 export const metadata: Metadata = {
-  title: 'Blog — Business Automation Insights — TrueCodeAI',
+  title: 'Blog — Business Automation Insights',
   description:
-    'Practical guides on business automation, AI agents, and operational efficiency for small business owners, operators, and founders.',
+    'Practical guides on AI agents, business automation and operational efficiency for US small business owners, contractors and founders.',
   alternates: { canonical: 'https://truecodeai.com/blog' },
 };
 
@@ -21,16 +22,30 @@ export default function BlogHubPage() {
           <span className="font-serif-i accent font-normal">without the jargon.</span>
         </h1>
         <p className="mt-6 max-w-xl text-white/55 text-lg">
-          Practical guides for business owners who want to automate more and do less manual work. No fluff — just what works.
+          Practical guides for business owners who want to automate more and do less manual work.
         </p>
-        <div className="mt-16 glass rounded-3xl p-12 text-center">
-          <p className="font-display text-2xl text-white/70">Articles coming soon.</p>
-          <p className="mt-4 text-white/40">
-            In the meantime,{' '}
-            <Link href="/solutions" className="text-[#ff6a1a] underline">browse our solutions</Link>{' '}
-            or{' '}
-            <Link href="/tools/automation-roi-calculator" className="text-[#ff6a1a] underline">try the ROI calculator</Link>.
-          </p>
+
+        <div className="mt-16 grid gap-6 md:grid-cols-2">
+          {posts.map((post) => (
+            <Link
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className="group glass rounded-2xl p-7 transition-all duration-500 hover:border-[#ff6a1a]/40 hover:-translate-y-1"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-[#ff6a1a]">{post.category}</span>
+                <span className="text-white/20">·</span>
+                <span className="font-mono text-[10px] text-white/35">{post.readingTime}</span>
+              </div>
+              <h2 className="font-display text-xl font-medium text-white group-hover:text-[#ff6a1a] transition-colors leading-snug mb-3">
+                {post.title}
+              </h2>
+              <p className="text-sm text-white/50 leading-relaxed line-clamp-3">{post.excerpt}</p>
+              <div className="mt-5 font-mono text-[10px] uppercase tracking-widest text-[#ff6a1a]">
+                Read article →
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
     </main>

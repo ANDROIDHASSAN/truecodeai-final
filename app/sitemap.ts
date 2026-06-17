@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { solutions } from '@/content/solutions';
 import { nicheGroups } from '@/content/niches';
+import { posts } from '@/content/posts';
 
 const BASE = 'https://truecodeai.com';
 
@@ -15,8 +16,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/tools/automation-roi-calculator`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/work`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE}/blog`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
-    { url: `${BASE}/compare`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
+    // compare is noindex — excluded from sitemap until content is ready
   ];
+
+  const blogRoutes: MetadataRoute.Sitemap = posts.map((p) => ({
+    url: `${BASE}/blog/${p.slug}`,
+    lastModified: new Date(p.publishedAt),
+    changeFrequency: 'monthly',
+    priority: 0.75,
+  }));
 
   const solutionRoutes: MetadataRoute.Sitemap = solutions.map((s) => ({
     url: `${BASE}/solutions/${s.slug}`,
@@ -32,5 +40,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...solutionRoutes, ...industryRoutes];
+  return [...staticRoutes, ...blogRoutes, ...solutionRoutes, ...industryRoutes];
 }
