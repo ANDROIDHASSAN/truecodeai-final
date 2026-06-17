@@ -87,9 +87,37 @@ export default async function Image() {
             fontSize: 22,
             lineHeight: 1.5,
             display: 'flex',
+            marginBottom: 32,
           }}
         >
           50 engineers · MVPs · AI Agents · Voice AI · Custom ML
+        </div>
+
+        {/* CTA */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+          <div
+            style={{
+              background: '#ff6a1a',
+              color: '#000',
+              padding: '14px 32px',
+              borderRadius: 999,
+              fontSize: 18,
+              fontWeight: 700,
+              display: 'flex',
+            }}
+          >
+            Start Your Build →
+          </div>
+          <div
+            style={{
+              color: 'rgba(255,255,255,0.35)',
+              fontSize: 16,
+              display: 'flex',
+              letterSpacing: '0.05em',
+            }}
+          >
+            truecodeai.com
+          </div>
         </div>
       </div>
     ),

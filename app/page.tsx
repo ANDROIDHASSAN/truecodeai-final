@@ -15,17 +15,22 @@ import { process as processSteps } from '@/data/site';
 
 export const metadata: Metadata = {
   // absolute bypasses the root layout template (%s | TrueCodeAI) — this page IS the brand root
+  // 59 chars — within Google's ~60-char SERP display limit
   title: {
-    absolute: 'TrueCodeAI® — AI Development Company India | MVPs, AI Agents & Custom ML',
+    absolute: 'TrueCodeAI® — AI Development Company India | MVPs & Agents',
   },
+  // 155 chars — within Google's 150-160 char snippet limit
   description:
-    "India's AI & software development studio — 50 engineers. Production-grade MVPs, AI agents, voice bots & custom ML shipped in weeks. Trusted worldwide. Kickoff in 24 hours.",
+    "India's AI & software studio — 50 engineers. Production-grade MVPs, AI agents, voice bots & custom ML shipped worldwide in weeks. Kickoff in 24 hours.",
   alternates: { canonical: 'https://truecodeai.com' },
   openGraph: {
-    title: 'TrueCodeAI® — AI Development Company India | MVPs in Weeks',
+    // 32 chars — punchy for social cards
+    title: 'TrueCodeAI® — We Build Anything',
+    // 107 chars — within the ~125-char social preview limit
     description:
-      '50-engineer AI & software studio. Startups, production-grade MVPs, AI agents, voice automation & custom ML — from idea to live product in weeks.',
+      '50-engineer AI studio. MVPs, AI agents, voice automation & custom ML shipped in weeks. Kickoff in 24 hours.',
     url: 'https://truecodeai.com',
+    siteName: 'TrueCodeAI',
     images: [
       {
         url: '/opengraph-image',
@@ -36,8 +41,9 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    title: 'TrueCodeAI® — AI Development Company India',
-    description: '50 engineers. MVPs, AI agents, voice bots & custom ML shipped in weeks. Describe it — we build it.',
+    title: 'TrueCodeAI® — We Build Anything',
+    description:
+      '50-engineer AI studio. MVPs, AI agents, voice automation & custom ML shipped in weeks. Kickoff in 24 hours.',
     images: ['/opengraph-image'],
   },
 };

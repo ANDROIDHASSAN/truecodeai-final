@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     template: '%s | TrueCodeAI',
   },
   description:
-    "India's AI & software development studio — 50 engineers. Production-grade MVPs, AI agents, voice bots & custom ML shipped in weeks. Trusted worldwide. Kickoff in 24 hours.",
+    "India's AI & software studio — 50 engineers. Production-grade MVPs, AI agents, voice bots & custom ML shipped worldwide in weeks. Kickoff in 24 hours.",
   keywords: [
     'software development company India',
     'AI development company India',
