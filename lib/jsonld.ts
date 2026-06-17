@@ -158,7 +158,11 @@ export const homepageJsonLd = {
       about: { '@id': 'https://truecodeai.com/#organization' },
       description: "India's AI & software development studio. 50 engineers shipping startups, production-grade MVPs, AI agents, voice agents & custom ML worldwide in weeks.",
       datePublished: '2024-01-15',
-      dateModified: '2026-06-13',
+      dateModified: '2026-06-17',
+      speakable: {
+        '@type': 'SpeakableSpecification',
+        cssSelector: ['h1', 'h2', '.manifesto-text', '.hero-blurb'],
+      },
       breadcrumb: {
         '@type': 'BreadcrumbList',
         itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://truecodeai.com/' }],
@@ -226,6 +230,38 @@ export function servicePageJsonLd(opts: {
   ];
   if (opts.faq?.length) graph.push(faqJsonLd(opts.faq));
   return { '@context': 'https://schema.org', '@graph': graph };
+}
+
+export function howtoJsonLd(steps: { title: string; desc: string }[]) {
+  return {
+    '@type': 'HowTo',
+    '@id': 'https://truecodeai.com/#howto',
+    name: 'How TrueCodeAI builds your software project',
+    description: 'From first call to production launch — the TrueCodeAI development process.',
+    totalTime: 'P4W',
+    step: steps.map((s, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: s.title,
+      text: s.desc,
+    })),
+  };
+}
+
+export function itemListJsonLd(items: { slug: string; title: string }[], baseUrl: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': `${baseUrl}#list`,
+    name: 'TrueCodeAI Automation Solutions',
+    numberOfItems: items.length,
+    itemListElement: items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: `https://truecodeai.com/solutions/${item.slug}`,
+      name: item.title,
+    })),
+  };
 }
 
 export function articleJsonLd(opts: {

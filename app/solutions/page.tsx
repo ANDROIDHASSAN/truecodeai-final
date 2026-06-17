@@ -1,18 +1,31 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Script from 'next/script';
 import { solutions } from '@/content/solutions';
 import { nicheGroups } from '@/content/niches';
+import { itemListJsonLd } from '@/lib/jsonld';
 
 export const metadata: Metadata = {
-  title: 'Business Automation Solutions — TrueCodeAI',
+  title: 'Business Automation Solutions',
   description:
     'Browse 36 industry-specific automation solutions for trades, clinics, real estate, professional services, and e-commerce. Custom-built by TrueCodeAI.',
   alternates: { canonical: 'https://truecodeai.com/solutions' },
 };
 
+const listSchema = JSON.stringify(
+  itemListJsonLd(
+    solutions.map((s) => ({ slug: s.slug, title: s.title })),
+    'https://truecodeai.com/solutions'
+  )
+);
+
 export default function SolutionsHubPage() {
   return (
-    <main className="min-h-screen bg-[#060607] text-white">
+    <>
+      <Script id="solutions-list-schema" type="application/ld+json" strategy="beforeInteractive">
+        {listSchema}
+      </Script>
+      <main className="min-h-screen bg-[#060607] text-white">
       <section className="max-w-7xl mx-auto px-6 md:px-10 pt-36 pb-20">
         <div className="label flex items-center gap-3 mb-6">
           <span className="accent">✦</span> all solutions
@@ -59,6 +72,7 @@ export default function SolutionsHubPage() {
           })}
         </div>
       </section>
-    </main>
+      </main>
+    </>
   );
 }

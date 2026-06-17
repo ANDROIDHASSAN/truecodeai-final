@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const sol = getSolutionBySlug(slug);
   if (!sol) return {};
   return {
-    title: `${sol.title} — TrueCodeAI`,
+    title: sol.title,
     description: sol.metaDescription,
     alternates: { canonical: `https://truecodeai.com/solutions/${sol.slug}` },
     openGraph: {

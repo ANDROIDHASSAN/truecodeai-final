@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const group = nicheGroups.find((g) => g.slug === niche);
   if (!group) return {};
   return {
-    title: `${group.label} Automation Software — TrueCodeAI`,
+    title: `${group.label} Automation Software`,
     description: group.description,
     alternates: { canonical: `https://truecodeai.com/industries/${group.slug}` },
     openGraph: {

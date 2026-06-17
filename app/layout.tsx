@@ -93,6 +93,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="geo.placename" content="Nashik, Maharashtra, India" />
         <meta name="geo.position" content="20.0059;73.7797" />
         <meta name="ICBM" content="20.0059, 73.7797" />
+        {/* LCP preload — first hero slide is the largest contentful paint candidate */}
+        <link rel="preload" as="image" href="/img/hero/hero1.jfif" />
         <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <link rel="dns-prefetch" href="https://wa.me" />

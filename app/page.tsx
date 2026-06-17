@@ -10,10 +10,14 @@ import Reviews from '@/components/Reviews';
 import Process from '@/components/Process';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-import { homepageJsonLd } from '@/lib/jsonld';
+import { homepageJsonLd, howtoJsonLd } from '@/lib/jsonld';
+import { process as processSteps } from '@/data/site';
 
 export const metadata: Metadata = {
-  title: 'TrueCodeAI® — AI Development Company India | MVPs, AI Agents & Custom ML',
+  // absolute bypasses the root layout template (%s | TrueCodeAI) — this page IS the brand root
+  title: {
+    absolute: 'TrueCodeAI® — AI Development Company India | MVPs, AI Agents & Custom ML',
+  },
   description:
     "India's AI & software development studio — 50 engineers. Production-grade MVPs, AI agents, voice bots & custom ML shipped in weeks. Trusted worldwide. Kickoff in 24 hours.",
   alternates: { canonical: 'https://truecodeai.com' },
@@ -24,7 +28,7 @@ export const metadata: Metadata = {
     url: 'https://truecodeai.com',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&h=630&auto=format&fit=crop',
+        url: '/opengraph-image',
         width: 1200,
         height: 630,
         alt: 'TrueCodeAI — AI & Software Development Company India',
@@ -34,17 +38,24 @@ export const metadata: Metadata = {
   twitter: {
     title: 'TrueCodeAI® — AI Development Company India',
     description: '50 engineers. MVPs, AI agents, voice bots & custom ML shipped in weeks. Describe it — we build it.',
-    images: ['https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&h=630&auto=format&fit=crop'],
+    images: ['/opengraph-image'],
   },
 };
 
 const pageSchema = JSON.stringify(homepageJsonLd);
+const howtoSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  ...howtoJsonLd(processSteps.map((s) => ({ title: s.title, desc: s.desc }))),
+});
 
 export default function HomePage() {
   return (
     <>
       <Script id="homepage-schema" type="application/ld+json" strategy="beforeInteractive">
         {pageSchema}
+      </Script>
+      <Script id="howto-schema" type="application/ld+json" strategy="beforeInteractive">
+        {howtoSchema}
       </Script>
       <main className="bg-[#060607]">
         <Hero />

@@ -9,6 +9,15 @@ const hubs = [
   { label: 'Blog', href: '/blog' },
 ];
 
+const featuredSolutions = [
+  { label: 'AI Answering for HVAC', href: '/solutions/ai-answering-service-hvac' },
+  { label: 'Plumber Job Scheduling', href: '/solutions/job-scheduling-software-plumbers' },
+  { label: 'Dental Reminder Automation', href: '/solutions/dental-appointment-reminder-automation' },
+  { label: 'Roofing Estimate Software', href: '/solutions/automated-roofing-estimate-software' },
+  { label: 'Abandoned Cart Automation', href: '/solutions/abandoned-cart-automation-shopify' },
+  { label: 'Real Estate Lead Routing', href: '/solutions/lead-routing-crm-real-estate-teams' },
+];
+
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
@@ -21,8 +30,8 @@ export default function Footer() {
           TrueCode<span className="text-[#ff6a1a]/10">AI</span>
         </div>
 
-        <div className="relative grid gap-10 md:grid-cols-4 border-t border-white/10 pt-10">
-          <div className="max-w-xs md:col-span-1">
+        <div className="relative grid gap-10 md:grid-cols-5 border-t border-white/10 pt-10">
+          <div className="max-w-xs">
             <div className="font-display font-semibold text-white text-lg">
               TrueCode<span className="accent">AI</span>
               <span className="text-white/40 text-[10px] align-super ml-0.5">®</span>
@@ -54,6 +63,19 @@ export default function Footer() {
                 <li key={h.href}>
                   <Link href={h.href} className="text-white/60 hover:text-white transition-colors text-sm">
                     {h.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <div className="label">top solutions</div>
+            <ul className="mt-4 space-y-2">
+              {featuredSolutions.map((s) => (
+                <li key={s.href}>
+                  <Link href={s.href} className="text-white/60 hover:text-white transition-colors text-sm">
+                    {s.label}
                   </Link>
                 </li>
               ))}
