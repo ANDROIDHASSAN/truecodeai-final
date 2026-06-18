@@ -106,4 +106,16 @@ export const nicheGroups: NicheGroup[] = [
       'ai-lead-qualification-agent',
     ],
   },
+  {
+    slug: 'villas',
+    label: 'Villa & Holiday Rentals',
+    description:
+      'Direct booking engines, AI-powered guest messaging, maintenance automation and review management for villa owners, boutique holiday rental hosts and short-term rental operators cutting OTA dependency.',
+    solutions: [
+      'airbnb-guest-messaging-automation',
+      'maintenance-request-software-property-managers',
+      'event-management-software-planners',
+      'catering-management-software',
+    ],
+  },
 ];

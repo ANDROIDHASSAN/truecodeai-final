@@ -110,44 +110,105 @@ export const capabilities: Capability[] = [
 ];
 
 export type Project = {
+  slug: string;
   name: string;
   category: string;
   metric: string;
   status?: string;
   blurb: string;
   image: string;
+  challenge?: string;
+  solution?: string;
+  stack?: string[];
+  outcomes?: { value: string; label: string }[];
 };
 
 export const projects: Project[] = [
   {
+    slug: 'interify',
     name: 'Interify',
     category: 'Interior Design CRM',
     metric: '10,000+ users',
     blurb: 'A CRM built for interior designers to run projects and clients in one place.',
     image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1800&auto=format&fit=crop',
+    challenge: 'Interior designers were drowning in WhatsApp threads, scattered invoices and missed follow-ups. No existing tool matched the way they actually worked with clients across long, multi-phase projects.',
+    solution: 'We built a purpose-fit CRM with project timelines, client mood boards, vendor management and automated follow-up sequences — a full practice management system for creative studios.',
+    stack: ['Next.js', 'Node.js', 'PostgreSQL', 'AWS', 'Stripe'],
+    outcomes: [
+      { value: '10k+', label: 'active users' },
+      { value: '40%', label: 'less time on admin' },
+      { value: '3×', label: 'faster client onboarding' },
+    ],
   },
   {
+    slug: 'cupcount',
     name: 'CupCount',
     category: 'POS · CRM',
     metric: '300+ shop owners',
     blurb: 'A point-of-sale and CRM tailored for neighbourhood chai shops.',
     image: 'https://images.unsplash.com/photo-1571934811356-5cc061b6821f?q=80&w=1800&auto=format&fit=crop',
+    challenge: 'Generic POS systems were built for restaurants or retail — chai shop owners needed something simpler, cheaper and built around their specific order flow and loyal-customer model.',
+    solution: 'A lightweight POS with tap-to-order, loyalty points, daily closing reports and WhatsApp-based receipts. Deployed on a ₹5,000 Android tablet — no monthly SaaS fees.',
+    stack: ['React Native', 'Node.js', 'SQLite', 'WhatsApp Business API'],
+    outcomes: [
+      { value: '300+', label: 'active shop owners' },
+      { value: '₹5k', label: 'hardware cost total' },
+      { value: '2 min', label: 'to train new staff' },
+    ],
   },
   {
+    slug: 'nischay-shrivastav',
     name: 'Nischay Shrivastav',
     category: 'Cinematic Portfolio',
     metric: 'Bookings up 3×',
     blurb: "A cinematic portfolio that turns a photographer's reel into bookings.",
     image: 'https://images.unsplash.com/photo-1502920917128-1aa500764cbd?q=80&w=1800&auto=format&fit=crop',
+    challenge: 'A talented wedding photographer was losing bookings to competitors with better-looking websites — even though his work was clearly superior.',
+    solution: 'A full-screen cinematic portfolio with video reel, gallery filters, enquiry form with instant WhatsApp routing and an integrated calendar for availability checks.',
+    stack: ['Next.js', 'GSAP', 'Cloudinary', 'Vercel'],
+    outcomes: [
+      { value: '3×', label: 'more enquiries per month' },
+      { value: '90+', label: 'PageSpeed score' },
+      { value: '4 wks', label: 'from first call to launch' },
+    ],
   },
   {
+    slug: 'pn-villa',
     name: 'PN Villa',
     category: 'Direct Booking Engine',
     metric: 'OTA fees: ₹0',
     blurb: 'A direct-booking villa site that cuts out the OTA middlemen.',
     image: 'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=1800&auto=format&fit=crop',
+    challenge: 'The villa owner was paying 15–20% commission on every booking to OTA platforms. Guests found the property through OTAs but had no way to book direct — or even know a direct option existed.',
+    solution: 'A branded villa website with a custom booking engine — date picker, real-time availability calendar, instant confirmation — integrated with WhatsApp for payment coordination and guest communication.',
+    stack: ['Next.js', 'Tailwind CSS', 'Google Calendar API', 'WhatsApp Business API'],
+    outcomes: [
+      { value: '₹0', label: 'OTA commission paid' },
+      { value: '15–20%', label: 'cost saving per booking' },
+      { value: '100%', label: 'direct booking rate now' },
+    ],
+  },
+  {
+    slug: 'filmera-wedding-photography',
+    name: 'Filmera',
+    category: 'Wedding Photography Platform',
+    metric: 'Bookings up 5×',
+    blurb: 'A booking and portfolio platform for a premium wedding photography studio.',
+    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1800&auto=format&fit=crop',
+    challenge: 'Filmera was getting referrals but losing them at the enquiry stage. No strong online presence meant couples moved on to studios with slicker websites, even when Filmera\'s work was better.',
+    solution: 'A premium portfolio platform with couple stories, package showcase, availability calendar, enquiry flow with automated WhatsApp follow-up and a blog optimised for local wedding photography searches.',
+    stack: ['Next.js', 'GSAP', 'Resend', 'Cloudinary', 'Vercel'],
+    outcomes: [
+      { value: '5×', label: 'booking enquiries' },
+      { value: '#1', label: 'local search ranking' },
+      { value: '3 wks', label: 'from call to live' },
+    ],
   },
 ];
+
+export function getProjectBySlug(slug: string): Project | undefined {
+  return projects.find((p) => p.slug === slug);
+}
 
 export const screenshots = {
   kicker: 'inside the products',

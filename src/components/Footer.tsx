@@ -1,4 +1,17 @@
+import Link from 'next/link';
 import { nav, site } from '../data/site';
+
+const pages = [
+  { label: 'Services', href: '/services' },
+  { label: 'AI Development', href: '/services/ai' },
+  { label: 'Automation', href: '/services/automation' },
+  { label: 'Custom CRM', href: '/services/crm' },
+  { label: 'Integrations', href: '/services/integrations' },
+  { label: 'Solutions', href: '/solutions' },
+  { label: 'Industries', href: '/industries' },
+  { label: 'Our Work', href: '/work' },
+  { label: 'Blog', href: '/blog' },
+];
 
 export default function Footer() {
   return (
@@ -12,7 +25,7 @@ export default function Footer() {
           TrueCode<span className="text-[#ff6a1a]/10">AI</span>
         </div>
 
-        <div className="relative grid gap-10 md:grid-cols-3 border-t border-white/10 pt-10">
+        <div className="relative grid gap-10 md:grid-cols-4 border-t border-white/10 pt-10">
           <div className="max-w-xs">
             <div className="font-display font-semibold text-white text-lg">
               TrueCode<span className="accent">AI</span>
@@ -26,7 +39,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <div className="label">sitemap</div>
+            <div className="label">on this page</div>
             <ul className="mt-4 space-y-2">
               {nav.map((item) => (
                 <li key={item.href}>
@@ -36,6 +49,22 @@ export default function Footer() {
                   >
                     {item.label}
                   </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <div className="label">pages</div>
+            <ul className="mt-4 space-y-2">
+              {pages.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-white/60 hover:text-white transition-colors text-sm"
+                  >
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -69,10 +98,10 @@ export default function Footer() {
         <div className="relative mt-12 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-white/10 pt-6 font-mono text-[11px] text-white/40">
           <span>© {site.name} — say it, we build it.</span>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="/privacy-policy.html" className="hover:text-white transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="/terms.html" className="hover:text-white transition-colors">
               Terms of Service
             </a>
           </div>

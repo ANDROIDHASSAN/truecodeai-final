@@ -28,25 +28,29 @@ export default function WorkPage() {
 
         <div className="mt-16 grid gap-6 md:grid-cols-2">
           {projects.map((p) => (
-            <div
-              key={p.name}
-              className="glass rounded-3xl overflow-hidden border border-white/10 hover:border-[#ff6a1a]/30 transition-colors"
+            <Link
+              key={p.slug}
+              href={`/work/${p.slug}`}
+              className="group glass rounded-3xl overflow-hidden border border-white/10 hover:border-[#ff6a1a]/30 transition-colors"
             >
               <div className="aspect-[16/9] overflow-hidden">
                 <img
                   src={p.image}
                   alt={p.name}
                   loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
               <div className="p-7">
                 <div className="font-mono text-[10px] uppercase tracking-widest text-[#ff6a1a] mb-3">{p.category}</div>
-                <h2 className="font-display text-xl font-medium text-white">{p.name}</h2>
+                <h2 className="font-display text-xl font-medium text-white group-hover:text-[#ff6a1a] transition-colors">{p.name}</h2>
                 <p className="mt-2 text-sm text-white/50">{p.blurb}</p>
                 {p.metric && <div className="mt-3 font-mono text-[11px] text-white/30">{p.metric}</div>}
+                <div className="mt-4 font-mono text-[10px] uppercase tracking-widest text-[#ff6a1a] opacity-0 group-hover:opacity-100 transition-opacity">
+                  View case study →
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
