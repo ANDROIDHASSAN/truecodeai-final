@@ -46,12 +46,7 @@ export default async function ServicePage({ params }: Props) {
         '@id': `https://truecodeai.com/services/${svc.slug}#service`,
         name: svc.title,
         description: svc.metaDescription,
-        provider: {
-          '@type': 'ProfessionalService',
-          '@id': 'https://truecodeai.com/#organization',
-          name: 'TrueCodeAI',
-          url: 'https://truecodeai.com',
-        },
+        provider: { '@id': 'https://truecodeai.com/#organization' },
         areaServed: ['US', 'GB', 'AU', 'CA', 'Worldwide'],
         url: `https://truecodeai.com/services/${svc.slug}`,
       },

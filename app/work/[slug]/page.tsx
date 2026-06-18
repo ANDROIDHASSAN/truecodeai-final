@@ -37,21 +37,30 @@ export default async function WorkCaseStudyPage({ params }: Props) {
   const project = getProjectBySlug(slug);
   if (!project) notFound();
 
+  const pageUrl = `https://truecodeai.com/work/${project.slug}`;
   const schema = JSON.stringify({
     '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    '@id': `https://truecodeai.com/work/${project.slug}`,
-    name: `${project.name} — ${project.category} Case Study`,
-    description: project.blurb,
-    url: `https://truecodeai.com/work/${project.slug}`,
-    breadcrumb: {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://truecodeai.com' },
-        { '@type': 'ListItem', position: 2, name: 'Work', item: 'https://truecodeai.com/work' },
-        { '@type': 'ListItem', position: 3, name: project.name, item: `https://truecodeai.com/work/${project.slug}` },
-      ],
-    },
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        '@id': `${pageUrl}#webpage`,
+        url: pageUrl,
+        name: `${project.name} — ${project.category} Case Study`,
+        description: project.blurb,
+        isPartOf: { '@id': 'https://truecodeai.com/#website' },
+        about: { '@id': 'https://truecodeai.com/#organization' },
+        breadcrumb: { '@id': `${pageUrl}#breadcrumb` },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${pageUrl}#breadcrumb`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://truecodeai.com' },
+          { '@type': 'ListItem', position: 2, name: 'Work', item: 'https://truecodeai.com/work' },
+          { '@type': 'ListItem', position: 3, name: project.name, item: pageUrl },
+        ],
+      },
+    ],
   });
 
   return (
