@@ -4,7 +4,18 @@ import { screenshots } from '../data/site';
 import { useReveal } from '../smooth/SmoothScroll';
 import screen1 from '../img/hero/screen1.webp';
 
+const URL_ALT: Record<string, string> = {
+  'truecodeai.com/dashboard': 'TrueCodeAI — main product dashboard',
+  'interify.app/projects': 'Interify interior design CRM — projects view',
+  'cupcount.in/pos': 'CupCount point-of-sale system for chai shops',
+  'console.truecodeai.com': 'TrueCodeAI AI console — agent management',
+  'studio.truecodeai.com/agents': 'TrueCodeAI Studio — AI agent builder',
+  'ml.truecodeai.com/training': 'TrueCodeAI ML Platform — model training',
+  'voice.truecodeai.com/calls': 'TrueCodeAI Voice Agent — live call dashboard',
+};
+
 function Frame({ src, url }: { src: string; url: string }) {
+  const alt = URL_ALT[url] ?? `${url} — built by TrueCodeAI`;
   return (
     <div className="browser-frame shrink-0 w-[300px] md:w-[460px]" data-hover>
       <div className="browser-bar">
@@ -16,7 +27,7 @@ function Frame({ src, url }: { src: string; url: string }) {
       <div className="aspect-[16/10] overflow-hidden">
         <img
           src={src}
-          alt="product screenshot"
+          alt={alt}
           loading="lazy"
           className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
         />
