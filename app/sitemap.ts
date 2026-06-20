@@ -4,6 +4,8 @@ import { nicheGroups } from '@/content/niches';
 import { posts } from '@/content/posts';
 import { projects } from '@/data/site';
 import { services } from '@/content/services';
+import { locations } from '@/content/locations';
+import { technologies } from '@/content/technologies';
 
 const BASE = 'https://truecodeai.com';
 
@@ -15,6 +17,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/solutions`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE}/industries`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE}/services`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE}/hire`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${BASE}/technologies`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/tools`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/tools/automation-roi-calculator`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/work`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
@@ -57,6 +61,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
+  const locationRoutes: MetadataRoute.Sitemap = locations.map((l) => ({
+    url: `${BASE}/hire/${l.slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.75,
+  }));
+
+  const technologyRoutes: MetadataRoute.Sitemap = technologies.map((t) => ({
+    url: `${BASE}/technologies/${t.slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  }));
+
   return [
     ...staticRoutes,
     ...blogRoutes,
@@ -64,5 +82,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...solutionRoutes,
     ...industryRoutes,
     ...workRoutes,
+    ...locationRoutes,
+    ...technologyRoutes,
   ];
 }

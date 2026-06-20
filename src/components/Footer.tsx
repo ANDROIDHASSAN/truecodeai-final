@@ -5,10 +5,10 @@ const pages = [
   { label: 'Services', href: '/services' },
   { label: 'AI Development', href: '/services/ai' },
   { label: 'Automation', href: '/services/automation' },
-  { label: 'Custom CRM', href: '/services/crm' },
-  { label: 'Integrations', href: '/services/integrations' },
   { label: 'Solutions', href: '/solutions' },
   { label: 'Industries', href: '/industries' },
+  { label: 'Technologies', href: '/technologies' },
+  { label: 'Hire by City', href: '/hire' },
   { label: 'Our Work', href: '/work' },
   { label: 'Blog', href: '/blog' },
 ];
