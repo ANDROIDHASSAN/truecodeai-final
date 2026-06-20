@@ -56,6 +56,43 @@ function InlineMd({ text }: { text: string }) {
   );
 }
 
+function renderTable(block: string) {
+  const rows = block.split('\n').filter((r) => r.trim().startsWith('|'));
+  const isHeader = rows.length >= 2 && /^\|[-| :]+\|$/.test(rows[1].trim());
+  const dataRows = isHeader ? [rows[0], ...rows.slice(2)] : rows;
+  const headerRow = isHeader ? rows[0] : null;
+  const parseRow = (row: string) =>
+    row.split('|').filter((_, ci) => ci > 0 && ci < row.split('|').length - 1).map((c) => c.trim());
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full text-sm border-collapse">
+        {headerRow && (
+          <thead>
+            <tr>
+              {parseRow(headerRow).map((cell, ci) => (
+                <th key={ci} className="px-4 py-2 text-left text-white font-medium border-b border-white/20 font-mono text-[11px] uppercase tracking-widest">
+                  {cell}
+                </th>
+              ))}
+            </tr>
+          </thead>
+        )}
+        <tbody>
+          {dataRows.map((row, ri) => (
+            <tr key={ri} className="border-b border-white/10">
+              {parseRow(row).map((cell, ci) => (
+                <td key={ci} className="px-4 py-2 text-white/60 leading-relaxed">
+                  <InlineMd text={cell} />
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 function renderBody(body: string) {
   const sections = body.split('\n\n').filter(Boolean);
   return sections.map((block, i) => {
@@ -69,6 +106,10 @@ function renderBody(body: string) {
     if (block.startsWith('---')) {
       return <hr key={i} className="border-white/10 my-10" />;
     }
+    // Markdown table — contains | on multiple lines
+    if (block.includes('|') && block.split('\n').filter((l) => l.trim().startsWith('|')).length >= 2) {
+      return <div key={i} className="glass rounded-xl overflow-hidden">{renderTable(block)}</div>;
+    }
     if (block.startsWith('- ')) {
       const items = block.split('\n').filter((l) => l.startsWith('- '));
       return (
@@ -79,6 +120,19 @@ function renderBody(body: string) {
             </li>
           ))}
         </ul>
+      );
+    }
+    // Numbered lists
+    if (/^\d+\./.test(block.split('\n')[0])) {
+      const items = block.split('\n').filter((l) => /^\d+\./.test(l));
+      return (
+        <ol key={i} className="space-y-2 pl-4 border-l border-[#ff6a1a]/30 list-decimal list-inside">
+          {items.map((item, j) => (
+            <li key={j} className="text-white/65 leading-relaxed">
+              <InlineMd text={item.replace(/^\d+\.\s*/, '')} />
+            </li>
+          ))}
+        </ol>
       );
     }
     // Bold-only block (standalone feature label)
@@ -160,9 +214,9 @@ export default async function BlogPostPage({ params }: Props) {
 
           {/* CTA */}
           <div className="mt-16 glass rounded-3xl p-8 text-center">
-            <p className="font-display text-2xl text-white mb-2">Ready to stop missing calls?</p>
+            <p className="font-display text-2xl text-white mb-2">Ready to build with AI?</p>
             <p className="text-white/50 mb-6">
-              Tell us about your business — we scope and price it for free, within 24 hours.
+              Tell us what you need — we scope it for free and reply within 24 hours with a fixed price.
             </p>
             <a
               href={site.whatsapp}
