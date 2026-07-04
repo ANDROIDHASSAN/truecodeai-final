@@ -49,9 +49,9 @@ export default function Nav() {
           <a
             href="#top"
             onClick={go('#top')}
-            className="font-display font-semibold tracking-tight text-lg text-white"
+            className="font-display font-semibold tracking-[0.14em] text-lg text-white"
           >
-            TrueCode<span className="accent">AI</span>
+            AUREA
             <span className="text-white/40 text-[10px] align-super ml-0.5">®</span>
           </a>
 
@@ -61,7 +61,7 @@ export default function Nav() {
                 key={item.href}
                 href={item.href}
                 onClick={go(item.href)}
-                className="label !text-white/60 hover:!text-[#ff6a1a] transition-colors duration-300"
+                className="label !text-white/60 hover:!text-[#c9a45c] transition-colors duration-300"
               >
                 {item.label}
               </a>
@@ -74,7 +74,7 @@ export default function Nav() {
               onClick={go('#contact')}
               className="btn-fill hidden sm:inline-flex items-center rounded-full border border-white/25 px-5 h-9 text-sm font-medium text-white"
             >
-              start a build
+              enquire
             </a>
             <button
               aria-label="menu"

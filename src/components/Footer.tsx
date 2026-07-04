@@ -8,20 +8,20 @@ export default function Footer() {
     >
       <div className="max-w-7xl mx-auto">
         {/* oversized wordmark */}
-        <div className="display-xl font-semibold text-white/[0.05] leading-none text-[21vw] md:text-[15vw] select-none -mb-[2vw]">
-          TrueCode<span className="text-[#ff6a1a]/10">AI</span>
+        <div className="display-xl font-semibold text-white/[0.05] leading-none text-[24vw] md:text-[18vw] select-none -mb-[2vw] tracking-[0.02em]">
+          AUREA
         </div>
 
         <div className="relative grid gap-10 md:grid-cols-3 border-t border-white/10 pt-10">
           <div className="max-w-xs">
-            <div className="font-display font-semibold text-white text-lg">
-              TrueCode<span className="accent">AI</span>
+            <div className="font-display font-semibold text-white text-lg tracking-[0.06em]">
+              AUREA
               <span className="text-white/40 text-[10px] align-super ml-0.5">®</span>
             </div>
-            <p className="mt-4 text-sm text-white/50">{site.tagline}</p>
-            <p className="mt-1 text-sm text-white/40">{site.location}</p>
+            <p className="mt-4 font-serif-i text-lg text-white/70">{site.tagline}</p>
+            <p className="mt-2 text-sm text-white/40">{site.location}</p>
             <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.18em] accent">
-              50+ engineers · 6 divisions
+              Private luxury real estate · Est. 2009
             </p>
           </div>
 
@@ -45,7 +45,7 @@ export default function Footer() {
             <div className="label">say hello</div>
             <a
               href={`mailto:${site.email}`}
-              className="mt-4 inline-block font-serif-i text-2xl text-white hover:text-[#ff6a1a] transition-colors"
+              className="mt-4 inline-block font-serif-i text-2xl text-white hover:text-[#c9a45c] transition-colors"
             >
               {site.email}
             </a>
@@ -67,7 +67,7 @@ export default function Footer() {
         </div>
 
         <div className="relative mt-12 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-white/10 pt-6 font-mono text-[11px] text-white/40">
-          <span>© {site.name} — say it, we build it.</span>
+          <span>© {site.name} — own the address.</span>
           <div className="flex gap-6">
             <a href="#" className="hover:text-white transition-colors">
               Privacy Policy

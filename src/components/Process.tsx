@@ -49,21 +49,21 @@ export default function Process() {
       <div className="max-w-7xl mx-auto">
         <div className="proc-head max-w-3xl">
           <div className="label reveal flex items-center gap-3">
-            <span className="accent">✦</span> idea → production
+            <span className="accent">✦</span> how we work
           </div>
           <h2 className="reveal mt-6 display-xl text-4xl md:text-7xl font-medium text-gradient">
-            From a sentence
+            From a brief
             <br />
-            <span className="font-serif-i accent font-normal">to a system.</span>
+            <span className="font-serif-i accent font-normal">to the keys.</span>
           </h2>
         </div>
 
         <div className="proc-track relative mt-20">
-          <div className="proc-line absolute left-0 right-0 top-3 h-px bg-gradient-to-r from-[#ff6a1a] via-white/20 to-transparent origin-left hidden md:block" />
+          <div className="proc-line absolute left-0 right-0 top-3 h-px bg-gradient-to-r from-[#c9a45c] via-white/20 to-transparent origin-left hidden md:block" />
           <div className="grid gap-y-12 md:grid-cols-5 md:gap-x-6">
             {process.map((step) => (
               <div key={step.n} className="proc-step relative">
-                <span className="relative z-10 grid place-items-center h-6 w-6 rounded-full bg-[#ff6a1a] text-black font-mono text-[10px] font-bold">
+                <span className="relative z-10 grid place-items-center h-6 w-6 rounded-full bg-[#c9a45c] text-black font-mono text-[10px] font-bold">
                   {step.n.replace('0', '')}
                 </span>
                 <h3 className="mt-5 font-display text-xl md:text-2xl font-medium text-white">

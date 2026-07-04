@@ -1,215 +1,271 @@
 // ─────────────────────────────────────────────────────────────
-// Single source of truth for all TrueCodeAI site content.
+// Single source of truth for all AUREA site content.
+// AUREA — global luxury real estate across Florida, California,
+// Saudi Arabia and New York.
 // ─────────────────────────────────────────────────────────────
 
 export const site = {
-  name: 'TrueCodeAI',
-  tagline: 'The studio that builds anything.',
-  location: 'Nashik, India · Remote-first · Worldwide',
-  email: 'hello@truecodeai.com',
-  whatsapp: 'https://wa.me/0000000000',
+  name: 'AUREA',
+  tagline: 'Own the address.',
+  location: 'Miami · Los Angeles · Riyadh · New York',
+  email: 'private@aurea.estate',
+  phone: '+1 (305) 000 0000',
+  whatsapp: 'https://wa.me/13050000000',
 };
 
 export const nav = [
-  { label: 'capabilities', href: '#capabilities' },
-  { label: 'work', href: '#work' },
-  { label: 'screens', href: '#screens' },
-  { label: 'team', href: '#team' },
-  { label: 'reviews', href: '#reviews' },
-  { label: 'contact', href: '#contact' },
+  { label: 'markets', href: '#markets' },
+  { label: 'residences', href: '#residences' },
+  { label: 'gallery', href: '#gallery' },
+  { label: 'the firm', href: '#firm' },
+  { label: 'clients', href: '#clients' },
+  { label: 'enquire', href: '#contact' },
 ];
 
 export const hero = {
-  topline: '50+ engineers · taking new builds',
-  titleA: 'WE CAN BUILD',
-  titleB: 'ANYTHING',
+  topline: 'Private luxury real estate · Est. 2009',
+  titleA: 'EXTRAORDINARY',
+  titleB: 'ADDRESSES',
   blurb:
-    'Describe it once. Our 50-engineer studio designs it, ships it production-grade, and scales it — startups, MVPs, AI agents, voice automation and custom ML.',
+    'From oceanfront Miami to the hills of Los Angeles, the Riyadh skyline and the parks of Manhattan — we place discerning buyers into the residences that define them.',
+  // full-bleed crossfading hero, one frame per market
+  slides: [
+    {
+      city: 'Miami, Florida',
+      image:
+        'https://images.unsplash.com/photo-1535498730771-e735b998cd64?q=80&w=2000&auto=format&fit=crop',
+    },
+    {
+      city: 'Los Angeles, California',
+      image:
+        'https://images.unsplash.com/photo-1580655653885-65763b2597d0?q=80&w=2000&auto=format&fit=crop',
+    },
+    {
+      city: 'Riyadh, Saudi Arabia',
+      image:
+        'https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=2000&auto=format&fit=crop',
+    },
+    {
+      city: 'Manhattan, New York',
+      image:
+        'https://images.unsplash.com/photo-1522083165195-3424ed129620?q=80&w=2000&auto=format&fit=crop',
+    },
+  ],
   stats: [
-    { value: 50, suffix: '+', label: 'engineers in-house' },
-    { value: 60, suffix: 'k+', label: 'users on our products' },
-    { value: 6, suffix: '', label: 'specialist divisions' },
-    { value: 24, suffix: 'h', label: 'to project kickoff' },
+    { value: 12, suffix: 'B+', label: 'in closed sales (USD)' },
+    { value: 4, suffix: '', label: 'flagship markets' },
+    { value: 320, suffix: '+', label: 'residences placed' },
+    { value: 15, suffix: 'yr', label: 'discreet since 2009' },
   ],
 };
 
+// scrolling city band
 export const marquee = [
-  'Startups',
-  'Production MVPs',
-  'AI Agents',
-  'Voice Agents',
-  'AI Automation',
-  'Custom ML Models',
-  'Cloud',
-  'DevOps',
-  'Web3',
-  'Cybersecurity',
+  'Miami',
+  'Beverly Hills',
+  'Riyadh',
+  'Manhattan',
+  'Palm Beach',
+  'Malibu',
+  'NEOM',
+  'Tribeca',
+  'Bel Air',
+  'The Hamptons',
+  'Naples',
+  'Red Sea',
 ];
 
 export const manifesto = {
-  kicker: 'the only rule',
+  kicker: 'the aurea belief',
   // rendered word-by-word with a scroll-scrubbed reveal
-  text: 'If you can describe it, we can build it. A napkin-sketch startup. An MVP that ships at production grade — no rewrite later. An AI agent that runs your ops. A voice agent that answers every call. A model trained on your own data. You bring the idea. We bring the other fifty people.',
+  text: 'An address is more than a location. It is a statement of who you are. A beachfront tower in Miami. A glass estate above Los Angeles. A skyline residence in Riyadh. A penthouse over Central Park. We do not simply list homes — we place people into the places that will define the rest of their lives.',
 };
 
-export type Capability = {
+export type Market = {
   n: string;
-  title: string;
+  city: string;
+  region: string;
+  country: string;
+  from: string;
+  listings: number;
   desc: string;
   tags: string[];
   image: string;
 };
 
-export const capabilities: Capability[] = [
+export const markets: Market[] = [
   {
     n: '01',
-    title: 'Startups, end to end',
-    desc: 'From first sketch to funded product — strategy, design, engineering, launch. We have shipped our own; we build yours like it is ours.',
-    tags: ['Product strategy', 'Brand & UI', 'Full-stack build', 'Launch'],
+    city: 'Florida',
+    region: 'Miami · Palm Beach · Naples',
+    country: 'United States',
+    from: '$4.5M',
+    listings: 68,
+    desc: 'Oceanfront towers, private-island compounds and new-build estates along the Atlantic gold coast — where the water is the front lawn.',
+    tags: ['Beachfront', 'Star Island', 'Palm Beach', 'New builds'],
     image:
-      'https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=1600&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1501509497947-782640bc1412?q=80&w=1800&auto=format&fit=crop',
   },
   {
     n: '02',
-    title: 'MVPs at production grade',
-    desc: 'The speed of an MVP with the architecture of a real product. Ship in weeks, scale for years — no throwaway code, no rewrite tax.',
-    tags: ['Weeks not months', 'Scalable architecture', 'CI/CD from day one'],
+    city: 'California',
+    region: 'Beverly Hills · Bel Air · Malibu',
+    country: 'United States',
+    from: '$6.8M',
+    listings: 54,
+    desc: 'Canyon compounds, architectural glass villas and Malibu beachfront perched above the Pacific — privacy, light and cinema-grade views.',
+    tags: ['Bel Air', 'Malibu', 'Hollywood Hills', 'Architectural'],
     image:
-      'https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?q=80&w=1600&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1800&auto=format&fit=crop',
   },
   {
     n: '03',
-    title: 'Business solutions',
-    desc: 'Custom systems that remove the bottleneck in your operation — ERPs, CRMs, internal tools, dashboards, integrations.',
-    tags: ['Internal tools', 'CRM / ERP', 'Dashboards', 'Integrations'],
+    city: 'Saudi Arabia',
+    region: 'Riyadh · Jeddah · NEOM',
+    country: 'Kingdom of Saudi Arabia',
+    from: 'SAR 18M',
+    listings: 37,
+    desc: 'Landmark skyline residences and visionary Red Sea estates at the heart of the Kingdom’s new era — a market being written as we speak.',
+    tags: ['Riyadh skyline', 'NEOM', 'Red Sea', 'Diplomatic Quarter'],
     image:
-      'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1600&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1800&auto=format&fit=crop',
   },
   {
     n: '04',
-    title: 'AI agents',
-    desc: 'Autonomous agents that qualify leads, answer support, move tickets and run workflows — wired into the tools you already use.',
-    tags: ['Sales & support', 'Multi-agent systems', 'Tool integrations'],
+    city: 'New York',
+    region: 'Manhattan · Tribeca · The Hamptons',
+    country: 'United States',
+    from: '$3.9M',
+    listings: 82,
+    desc: 'Park-front penthouses on Billionaires’ Row, cast-iron Tribeca lofts and Hamptons oceanfront — the most storied real estate on earth.',
+    tags: ['Central Park', 'Tribeca', 'The Hamptons', 'Billionaires’ Row'],
     image:
-      'https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1600&auto=format&fit=crop',
-  },
-  {
-    n: '05',
-    title: 'Voice agents',
-    desc: 'Phone agents that sound human — they book appointments, qualify callers and follow up, in your brand voice, around the clock.',
-    tags: ['Inbound & outbound', '24/7 coverage', 'Human handoff'],
-    image:
-      'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=1600&auto=format&fit=crop',
-  },
-  {
-    n: '06',
-    title: 'AI automation',
-    desc: 'We map your busywork and delete it — document processing, follow-ups, reporting, scheduling — stitched into one quiet machine.',
-    tags: ['Workflow automation', 'Document AI', 'Zero-touch ops'],
-    image:
-      'https://images.unsplash.com/photo-1535378917042-10a22c95931a?q=80&w=1600&auto=format&fit=crop',
-  },
-  {
-    n: '07',
-    title: 'Custom ML models',
-    desc: 'Models trained on your data, for your exact use case — forecasting, vision, recommendation, risk. Deployed, monitored, retrained.',
-    tags: ['Your data', 'Fine-tuning', 'MLOps & monitoring'],
-    image:
-      'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1600&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=1800&auto=format&fit=crop',
   },
 ];
 
-export type Project = {
+export type Listing = {
   name: string;
-  category: string;
-  metric: string;
+  city: string;
+  price: string;
+  beds: number;
+  baths: number;
+  area: string;
   status?: string;
   blurb: string;
   image: string;
 };
 
-export const projects: Project[] = [
+export const listings: Listing[] = [
   {
-    name: 'HappyWedz',
-    category: 'Wedding Platform',
-    metric: '50,000+ active users',
-    blurb: 'A wedding platform connecting couples with vendors at national scale.',
+    name: 'Villa Aurora',
+    city: 'Star Island, Miami',
+    price: '$28,500,000',
+    beds: 7,
+    baths: 9,
+    area: '12,400 sq ft',
+    status: 'exclusive',
+    blurb:
+      'A private-island waterfront estate with 200 ft of frontage, infinity pool and a deep-water dock for a 120 ft yacht.',
     image:
-      'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1800&auto=format&fit=crop',
   },
   {
-    name: 'Interify',
-    category: 'Interior Design CRM',
-    metric: '10,000+ users',
-    blurb: 'A CRM built for interior designers to run projects and clients in one place.',
+    name: 'The Cliff House',
+    city: 'Malibu, California',
+    price: '$19,750,000',
+    beds: 5,
+    baths: 6,
+    area: '8,900 sq ft',
+    blurb:
+      'Cantilevered glass over the Pacific — walls of sliding glass, a floating staircase and a pool that meets the horizon.',
     image:
-      'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=1800&auto=format&fit=crop',
   },
   {
-    name: 'CupCount',
-    category: 'POS · CRM',
-    metric: '300+ shop owners',
-    blurb: 'A point-of-sale and CRM tailored for neighbourhood chai shops.',
+    name: 'Sky Palace Penthouse',
+    city: 'Riyadh, Saudi Arabia',
+    price: 'SAR 42,000,000',
+    beds: 5,
+    baths: 7,
+    area: '9,600 sq ft',
+    status: 'new',
+    blurb:
+      'A full-floor residence crowning the Riyadh skyline, with private lift, majlis, cinema and a wraparound sky terrace.',
     image:
-      'https://images.unsplash.com/photo-1571934811356-5cc061b6821f?q=80&w=1800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1800&auto=format&fit=crop',
   },
   {
-    name: 'WapZio',
-    category: 'WhatsApp Business Suite',
-    metric: 'In development',
-    status: 'building',
-    blurb: 'A WhatsApp-first communication tool for businesses that live in chat.',
+    name: 'Central Park Aerie',
+    city: 'Billionaires’ Row, New York',
+    price: '$34,000,000',
+    beds: 4,
+    baths: 5,
+    area: '6,200 sq ft',
+    blurb:
+      'Perched 1,000 ft above Central Park — floor-to-ceiling glass framing the reservoir, the skyline and both rivers.',
     image:
-      'https://images.unsplash.com/photo-1611746872915-64382b5c76da?q=80&w=1800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1800&auto=format&fit=crop',
   },
   {
-    name: 'Nischay Shrivastav',
-    category: 'Cinematic Portfolio',
-    metric: 'Bookings up 3×',
-    blurb: 'A cinematic portfolio that turns a photographer’s reel into bookings.',
+    name: 'Bel Air Glass Estate',
+    city: 'Bel Air, California',
+    price: '$46,000,000',
+    beds: 8,
+    baths: 12,
+    area: '18,000 sq ft',
+    status: 'exclusive',
+    blurb:
+      'A gated compound on 1.4 acres — motor court, wellness wing, screening room and a 100 ft vanishing-edge pool.',
     image:
-      'https://images.unsplash.com/photo-1502920917128-1aa500764cbd?q=80&w=1800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1800&auto=format&fit=crop',
   },
   {
-    name: 'PN Villa',
-    category: 'Direct Booking Engine',
-    metric: 'OTA fees: ₹0',
-    blurb: 'A direct-booking villa site that cuts out the OTA middlemen.',
+    name: 'Red Sea Villa',
+    city: 'NEOM, Saudi Arabia',
+    price: 'Price on request',
+    beds: 6,
+    baths: 8,
+    area: '11,200 sq ft',
+    status: 'coming soon',
+    blurb:
+      'A landmark waterfront villa within the Kingdom’s new coastal region — private beach, moorings and full concierge.',
     image:
-      'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=1800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1800&auto=format&fit=crop',
   },
 ];
 
-export const screenshots = {
-  kicker: 'inside the products',
-  title: 'Real screens. Shipped software.',
+export const gallery = {
+  kicker: 'inside the residences',
+  title: 'Real homes. Not renders.',
+  desc: 'Every frame is a room we have walked, in a home we currently represent — pulled straight from our private portfolio across the four markets.',
   rowA: [
-    'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1559028012-481c04fa702d?q=80&w=1400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1555421689-491a97ff2040?q=80&w=1400&auto=format&fit=crop',
+    { src: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=1400&auto=format&fit=crop', caption: 'Chef’s kitchen · Palm Beach' },
+    { src: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1400&auto=format&fit=crop', caption: 'Primary suite · Bel Air' },
+    { src: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1400&auto=format&fit=crop', caption: 'Great room · Riyadh' },
+    { src: 'https://images.unsplash.com/photo-1600121848594-d8644e57abab?q=80&w=1400&auto=format&fit=crop', caption: 'Lounge · Tribeca' },
   ],
   rowB: [
-    'https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=1400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=1400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1517292987719-0369a794ec0f?q=80&w=1400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=1400&auto=format&fit=crop',
+    { src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1400&auto=format&fit=crop', caption: 'Living · Central Park' },
+    { src: 'https://images.unsplash.com/photo-1617103996702-96ff29b1c467?q=80&w=1400&auto=format&fit=crop', caption: 'Spa & pool · Malibu' },
+    { src: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1400&auto=format&fit=crop', caption: 'Terrace · Miami' },
+    { src: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1400&auto=format&fit=crop', caption: 'Dining · The Hamptons' },
   ],
 };
 
-export const team = {
-  kicker: 'the bench',
-  title: '50 engineers. Six divisions. One team on your build.',
-  desc: 'Every project gets a dedicated pod pulled from across the studio — so the same roof covers your frontend, your infra, your model and your security review.',
+export const firm = {
+  kicker: 'the firm',
+  title: 'One private desk. Every market.',
+  desc: 'AUREA is not a listings portal. Every client is paired with a single senior advisor who runs the entire search — sourcing off-market, negotiating quietly and coordinating legal, design and concierge across borders.',
   image:
-    'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1800&auto=format&fit=crop',
-  divisions: [
-    { name: 'Web & Product', count: 14, desc: 'React, Node, mobile, design systems' },
-    { name: 'AI & ML', count: 12, desc: 'Agents, LLM apps, custom model training' },
-    { name: 'Cloud', count: 8, desc: 'AWS, GCP, Azure — architecture & cost' },
-    { name: 'DevOps', count: 6, desc: 'CI/CD, Kubernetes, observability' },
-    { name: 'Web3', count: 5, desc: 'Smart contracts, dApps, tokenomics' },
-    { name: 'Cybersecurity', count: 5, desc: 'Audits, pentesting, compliance' },
+    'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1800&auto=format&fit=crop',
+  desks: [
+    { name: 'Private Acquisitions', count: 12, desc: 'Buy-side representation for single homes and portfolios' },
+    { name: 'Off-Market Portfolio', count: 9, desc: 'Homes never listed publicly, seen by invitation only' },
+    { name: 'Global Concierge', count: 8, desc: 'Relocation, staffing, aviation and lifestyle' },
+    { name: 'Investment Advisory', count: 6, desc: 'Yield, appreciation and cross-border structuring' },
+    { name: 'Architecture & Design', count: 7, desc: 'New builds, renovation and staging partners' },
+    { name: 'Legal & Escrow', count: 5, desc: 'Discreet closings, trusts and compliance' },
   ],
 };
 
@@ -223,67 +279,67 @@ export type Review = {
 export const reviews: Review[] = [
   {
     quote:
-      'We came with a pitch deck and left with a product 50,000 people use. They argued with us when we were wrong — that alone was worth the fee.',
-    name: 'Arjun Mehta',
-    role: 'Founder, HappyWedz',
+      'They found our Star Island home before it ever hit the market and negotiated eight figures off the ask. Two weeks, start to keys. Extraordinary.',
+    name: 'Jonathan Vance',
+    role: 'Acquired in Miami, Florida',
     avatar:
       'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop',
   },
   {
     quote:
-      'Their voice agent answers every call to our clinics. Bookings happen at 2am now. It paid for itself inside the first month.',
-    name: 'Sara Lindqvist',
-    role: 'COO, NordCare Clinics',
+      'I wanted privacy above everything. My advisor showed me three homes — all off-market — and I bought the second. No press, no noise, no leaks.',
+    name: 'Sofia Marchetti',
+    role: 'Private client, Bel Air',
     avatar:
       'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop',
   },
   {
     quote:
-      'The “MVP” they shipped survived our Series A traffic spike untouched. Most agencies sell speed or quality. Somehow this was both.',
-    name: 'Daniel Okafor',
-    role: 'CTO, LedgerPay',
+      'Buying in Riyadh as a foreign national felt impossible until AUREA. They handled every layer — legal, banking, design — in one relationship.',
+    name: 'Khalid Al-Rashid',
+    role: 'Acquired in Riyadh, KSA',
     avatar:
       'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop',
   },
   {
     quote:
-      'They trained a demand-forecasting model on three years of our messy data and it now drives our entire purchasing. Felt like hiring an ML department overnight.',
-    name: 'Priya Sharma',
-    role: 'Director, Vastra Retail',
+      'The Central Park penthouse was everything the brochures never are. They understood the light I wanted before I could describe it.',
+    name: 'Eleanor Whitmore',
+    role: 'Acquired in New York',
     avatar:
       'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop',
   },
   {
     quote:
-      'One pod handled our app, our cloud and our security audit. Six vendors became one WhatsApp group. I will never go back.',
+      'We sold in Malibu and bought in the Hamptons in the same quarter, both quietly. One team, four time zones, zero friction.',
     name: 'Marcus Chen',
-    role: 'Founder, Stackline',
+    role: 'Sold & acquired, coast to coast',
     avatar:
       'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop',
   },
   {
     quote:
-      'I described the idea on a Tuesday call. The kickoff doc arrived Wednesday morning. They really do build anything — and fast.',
-    name: 'Elena Rossi',
-    role: 'CEO, Fioré Studio',
+      'I described the life I wanted, not the house. What they brought me was the life. That is the difference with this firm.',
+    name: 'Isabella Rossi',
+    role: 'Acquired in Palm Beach',
     avatar:
       'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop',
   },
 ];
 
 export const process = [
-  { n: '01', title: 'Say it', desc: 'A 30-minute call. You describe it — napkin sketch, voice note, half an idea. All valid inputs.' },
-  { n: '02', title: 'Shape it', desc: 'We return a scoped plan in 48 hours: architecture, pod, timeline, fixed price. No surprises later.' },
-  { n: '03', title: 'Build it', desc: 'Your pod ships weekly. You watch it happen in a live staging link, not a slide deck.' },
-  { n: '04', title: 'Ship it', desc: 'Production launch with monitoring, security review and load testing already done.' },
-  { n: '05', title: 'Scale it', desc: 'We stay on — iterating, retraining models, tuning infra as your numbers grow.' },
+  { n: '01', title: 'The brief', desc: 'A private consultation. Budget, markets, lifestyle, discretion — we build the mandate around you, not a listing feed.' },
+  { n: '02', title: 'The shortlist', desc: 'Within days you receive a curated dossier — including off-market homes you will not find anywhere else.' },
+  { n: '03', title: 'The viewings', desc: 'Tour in person or by private cinematic walkthrough, on your schedule, in any of the four markets.' },
+  { n: '04', title: 'The negotiation', desc: 'We represent only your side of the table — pricing, terms and timing handled quietly on your behalf.' },
+  { n: '05', title: 'The keys', desc: 'Closing, legal, design and concierge coordinated end to end. You arrive to a home that is ready to live in.' },
 ];
 
 export const contact = {
-  kicker: 'your move',
-  titleA: 'Got an idea?',
-  titleB: 'We’ve got fifty engineers.',
-  desc: 'Tell us what you want to exist. We’ll reply within 24 hours with how we’d build it.',
-  ctaPrimary: 'Start a build',
-  ctaSecondary: 'WhatsApp us',
+  kicker: 'begin your search',
+  titleA: 'Find your',
+  titleB: 'address.',
+  desc: 'Tell us the life you want to live and the market that calls you. A senior advisor replies within 24 hours — in complete confidence.',
+  ctaPrimary: 'Request a private viewing',
+  ctaSecondary: 'WhatsApp an advisor',
 };

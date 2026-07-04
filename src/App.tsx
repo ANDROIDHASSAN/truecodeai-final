@@ -2,6 +2,7 @@ import { SmoothScroll } from './smooth/SmoothScroll';
 import Cursor from './components/Cursor';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
+import Marquee from './components/Marquee';
 import Manifesto from './components/Manifesto';
 import Services from './components/Services';
 import Work from './components/Work';
@@ -20,6 +21,7 @@ export default function App() {
       <SmoothScroll>
         <main className="bg-[#060607]">
           <Hero />
+          <Marquee />
           <Manifesto />
           <Services />
           <Work />

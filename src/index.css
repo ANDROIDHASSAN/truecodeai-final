@@ -10,8 +10,8 @@
   --line-strong: rgba(255, 255, 255, 0.18);
   --fg: #f4f4f2;
   --muted: rgba(244, 244, 242, 0.52);
-  --accent: #ff6a1a; /* neon orange */
-  --accent-dim: rgba(255, 106, 26, 0.12);
+  --accent: #c9a45c; /* champagne gold */
+  --accent-dim: rgba(201, 164, 92, 0.12);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -62,9 +62,10 @@ body::after {
   letter-spacing: -0.03em;
 }
 .font-serif-i {
-  font-family: 'Instrument Serif', Georgia, serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-style: italic;
-  letter-spacing: -0.01em;
+  font-weight: 500;
+  letter-spacing: 0;
 }
 .font-mono {
   font-family: 'Space Mono', ui-monospace, monospace;
@@ -168,6 +169,37 @@ body::after {
   transform: translateY(0);
 }
 
+.text-gold {
+  background: linear-gradient(180deg, #f3e2b8 0%, #c9a45c 55%, #9a763a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* slow cinematic zoom for hero frames */
+@keyframes kenburns {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: scale(1.22);
+  }
+}
+.kenburns {
+  animation: kenburns 14s ease-out forwards;
+}
+
+/* thin gold rule used as a section divider */
+.rule-gold {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(201, 164, 92, 0.6),
+    transparent
+  );
+}
+
 /* ───────────────────────────  MARQUEE  ─────────────────────────── */
 @keyframes marquee {
   from {
@@ -206,14 +238,14 @@ body::after {
   .cursor-ring {
     width: 40px;
     height: 40px;
-    border: 1px solid rgba(255, 106, 26, 0.5);
+    border: 1px solid rgba(201, 164, 92, 0.5);
     transition: width 0.3s var(--ease), height 0.3s var(--ease),
       background-color 0.3s var(--ease);
   }
   .cursor-ring.is-hovering {
     width: 72px;
     height: 72px;
-    background: rgba(255, 106, 26, 0.08);
+    background: rgba(201, 164, 92, 0.09);
   }
 }
 @media (pointer: coarse) {

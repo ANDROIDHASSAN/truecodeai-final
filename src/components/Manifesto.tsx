@@ -5,15 +5,14 @@ import { useReveal } from '../smooth/SmoothScroll';
 
 // words that flash in the accent colour as they illuminate
 const HOT = new Set([
-  'describe',
-  'build',
-  'startup.',
-  'production',
-  'agent',
-  'voice',
-  'model',
-  'idea.',
-  'fifty',
+  'address',
+  'Miami.',
+  'Angeles.',
+  'Riyadh.',
+  'Park.',
+  'places',
+  'lives.',
+  'define',
 ]);
 
 /** Word-by-word scroll-scrubbed manifesto — the classic awwwards reveal. */
@@ -59,7 +58,7 @@ export default function Manifesto() {
       data-scroll-section
       className="relative bg-[#060607] px-6 md:px-10 py-28 md:py-44 overflow-hidden"
     >
-      <div className="orb h-[420px] w-[420px] bg-[#ff6a1a] opacity-[0.06] -left-40 top-20" />
+      <div className="orb h-[420px] w-[420px] bg-[#c9a45c] opacity-[0.06] -left-40 top-20" />
 
       <div className="max-w-5xl mx-auto">
         <div className="man-kicker label flex items-center gap-3">

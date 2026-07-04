@@ -36,23 +36,23 @@ export default function Reviews() {
 
   return (
     <section
-      id="reviews"
+      id="clients"
       ref={root}
       data-scroll-section
       className="relative bg-[#0a0a0c] px-6 md:px-10 py-24 md:py-36 border-t border-white/10 overflow-hidden"
     >
-      <div className="orb h-[400px] w-[400px] bg-[#ff6a1a] opacity-[0.05] right-[-100px] bottom-0" />
+      <div className="orb h-[400px] w-[400px] bg-[#c9a45c] opacity-[0.05] right-[-100px] bottom-0" />
 
       <div className="max-w-7xl mx-auto">
         <div className="rev-head flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
             <div className="label reveal flex items-center gap-3">
-              <span className="accent">✦</span> client reviews
+              <span className="accent">✦</span> our clients
             </div>
             <h2 className="reveal mt-6 display-xl text-4xl md:text-7xl font-medium text-gradient">
-              Don’t take
+              Trusted with
               <br />
-              <span className="font-serif-i accent font-normal">our word for it.</span>
+              <span className="font-serif-i accent font-normal">their address.</span>
             </h2>
           </div>
           <div className="reveal flex items-center gap-4">
@@ -70,7 +70,7 @@ export default function Reviews() {
             <div>
               <div className="accent text-sm tracking-widest">★★★★★</div>
               <div className="text-xs text-white/50 mt-0.5">
-                from founders & operators worldwide
+                from private buyers across four markets
               </div>
             </div>
           </div>
@@ -81,7 +81,7 @@ export default function Reviews() {
             <figure
               key={r.name}
               data-hover
-              className="rev-card glass rounded-3xl p-7 flex flex-col justify-between transition-all duration-500 hover:border-[#ff6a1a]/40 hover:-translate-y-1.5"
+              className="rev-card glass rounded-3xl p-7 flex flex-col justify-between transition-all duration-500 hover:border-[#c9a45c]/40 hover:-translate-y-1.5"
             >
               <div>
                 <div className="accent text-xs tracking-[0.3em]">★★★★★</div>
