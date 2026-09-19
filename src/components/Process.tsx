@@ -51,7 +51,7 @@ export default function Process() {
           <div className="label reveal flex items-center gap-3">
             <span className="accent">✦</span> idea → production
           </div>
-          <h2 className="reveal mt-6 display-xl text-4xl md:text-7xl font-medium text-gradient">
+          <h2 className="reveal mt-6 display-xl text-4xl md:text-6xl font-medium text-gradient">
             From a sentence
             <br />
             <span className="font-serif-i accent font-normal">to a system.</span>

@@ -10,12 +10,12 @@ function Frame({ src, url }: { src: string; url: string }) {
         <span className="browser-dot" />
         <span className="browser-dot" />
         <span className="browser-dot" />
-        <span className="ml-3 font-mono text-[10px] text-white/35 truncate">{url}</span>
+        <span className="ml-3 font-mono text-[10px] text-white/60 truncate">{url}</span>
       </div>
       <div className="aspect-[16/10] overflow-hidden">
         <img
           src={src}
-          alt="product screenshot"
+          alt={`Screenshot of ${url} — built by TrueCodeAI`}
           loading="lazy"
           className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
         />

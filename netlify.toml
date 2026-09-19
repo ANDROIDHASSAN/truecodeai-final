@@ -1,0 +1,14 @@
+# Zero-config deploy on Netlify (git-connected or `netlify deploy --prod`).
+# Cloudflare Pages: build command `npm run build`, output `dist` — it reads public/_headers too.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# /privacy and /privacy/ both resolve to the prerendered file; no SPA catch-all (real 404s)
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301

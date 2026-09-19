@@ -101,7 +101,7 @@ export default function Team() {
               <span className="accent">✦</span> {team.kicker}
             </div>
             <div className="reveal mt-6 flex items-start gap-3">
-              <span className="team-big-num display-xl font-semibold accent text-[26vw] lg:text-[13vw] leading-none tabular-nums">
+              <span className="team-big-num display-xl font-semibold accent text-[34vw] sm:text-[9rem] lg:text-[11rem] leading-none tabular-nums">
                 0
               </span>
               <span className="font-serif-i text-2xl md:text-4xl text-white/70 mt-4 md:mt-8">

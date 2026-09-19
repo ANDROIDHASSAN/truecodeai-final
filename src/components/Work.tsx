@@ -63,7 +63,7 @@ export default function Work() {
             <div className="label reveal flex items-center gap-3">
               <span className="accent">✦</span> selected work
             </div>
-            <h2 className="reveal mt-6 display-xl text-4xl md:text-7xl font-medium text-gradient">
+            <h2 className="reveal mt-6 display-xl text-4xl md:text-6xl font-medium text-gradient">
               Built here.
               <br />
               <span className="font-serif-i accent font-normal">Used everywhere.</span>

@@ -8,7 +8,8 @@ export default {
         xs: '380px',
       },
       fontFamily: {
-        sans: ['"Readex Pro"', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['Geist', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['"Geist Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
     },
   },

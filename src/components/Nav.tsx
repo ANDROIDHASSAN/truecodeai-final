@@ -1,67 +1,63 @@
-import { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
+import { useEffect, useState } from 'react';
 import { nav, site } from '../data/site';
-import { loco } from '../smooth/SmoothScroll';
+import { scrollToTarget } from '../smooth/SmoothScroll';
+
+function Logo() {
+  return (
+    <a href="/" className="flex items-center gap-2.5 font-display font-semibold tracking-tight text-[17px] text-white">
+      <span aria-hidden className="grid h-7 w-7 place-items-center rounded-lg bg-gradient-to-br from-[#ff9a5c] to-[#ff4d1a] text-[13px] font-bold text-black shadow-[0_0_24px_rgba(255,106,26,0.35)]">
+        T
+      </span>
+      <span>
+        TrueCode<span className="accent">AI</span>
+      </span>
+    </a>
+  );
+}
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
-  const root = useRef<HTMLDivElement>(null);
+  const [scrolled, setScrolled] = useState(false);
 
-  // drop in after the preloader curtain lifts
+  // frosted bar once the page moves; transparent over the hero
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from('.nav-bar', {
-        y: -80,
-        opacity: 0,
-        duration: 1.1,
-        delay: 0.3,
-        ease: 'expo.out',
-      });
-    }, root);
-    return () => ctx.revert();
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // staggered links when the mobile menu opens
+  // lock page scroll behind the mobile menu
   useEffect(() => {
-    if (!open) return;
-    const ctx = gsap.context(() => {
-      gsap.from('.menu-link', {
-        yPercent: 120,
-        duration: 0.8,
-        stagger: 0.07,
-        ease: 'expo.out',
-      });
-    }, root);
-    return () => ctx.revert();
+    document.documentElement.style.overflow = open ? 'hidden' : '';
   }, [open]);
 
   const go = (href: string) => (e: React.MouseEvent) => {
-    e.preventDefault();
     setOpen(false);
-    if (loco.current) loco.current.scrollTo(href, { offset: -10 });
-    else document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    // only intercept in-page hash links whose target exists here; everything else navigates normally
+    const hash = href.includes('#') ? href.slice(href.indexOf('#')) : '';
+    if (!hash || !document.querySelector(hash)) return;
+    e.preventDefault();
+    scrollToTarget(hash);
   };
 
   return (
-    <div ref={root}>
-      <header className="fixed top-0 left-0 right-0 z-[9950] px-4 md:px-8 pt-4">
-        <div className="nav-bar glass-strong rounded-2xl px-5 md:px-7 h-14 flex items-center justify-between">
-          <a
-            href="#top"
-            onClick={go('#top')}
-            className="font-display font-semibold tracking-tight text-lg text-white"
-          >
-            TrueCode<span className="accent">AI</span>
-            <span className="text-white/40 text-[10px] align-super ml-0.5">®</span>
-          </a>
+    <>
+      <header
+        className={`fixed inset-x-0 top-0 z-[9950] transition-[background-color,border-color,backdrop-filter] duration-500 border-b ${
+          scrolled || open ? 'bg-[#060607]/75 backdrop-blur-xl border-white/[0.08]' : 'bg-transparent border-transparent'
+        }`}
+      >
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:px-10">
+          <Logo />
 
-          <nav className="hidden md:flex items-center gap-7">
+          <nav aria-label="Main" className="hidden md:flex items-center gap-1">
             {nav.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
                 onClick={go(item.href)}
-                className="label !text-white/60 hover:!text-[#ff6a1a] transition-colors duration-300"
+                className="rounded-full px-3.5 py-2 text-sm capitalize text-zinc-400 transition-colors hover:bg-white/[0.06] hover:text-white"
               >
                 {item.label}
               </a>
@@ -70,55 +66,59 @@ export default function Nav() {
 
           <div className="flex items-center gap-2">
             <a
-              href="#contact"
-              onClick={go('#contact')}
-              className="btn-fill hidden sm:inline-flex items-center rounded-full border border-white/25 px-5 h-9 text-sm font-medium text-white"
+              href="/#contact"
+              onClick={go('/#contact')}
+              className="hidden sm:inline-flex items-center gap-2 rounded-full bg-[#ff6a1a] px-4 h-9 text-sm font-medium text-black transition-transform duration-300 hover:scale-[1.03]"
             >
-              start a build
+              Get a quote <span aria-hidden>↗</span>
             </a>
             <button
-              aria-label="menu"
+              aria-label={open ? 'Close menu' : 'Open menu'}
+              aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
-              className="md:hidden grid place-items-center h-9 w-9"
+              className="md:hidden grid place-items-center h-10 w-10 rounded-full border border-white/10"
             >
-              <div className="space-y-1.5">
-                <span
-                  className={`block h-px w-6 bg-white transition-transform duration-300 ${open ? 'translate-y-[3.5px] rotate-45' : ''}`}
-                />
-                <span
-                  className={`block h-px w-6 bg-white transition-transform duration-300 ${open ? '-translate-y-[3px] -rotate-45' : ''}`}
-                />
-              </div>
+              <span className="relative block h-3 w-4">
+                <span className={`absolute left-0 top-0 block h-px w-4 bg-white transition-transform duration-300 ${open ? 'translate-y-1.5 rotate-45' : ''}`} />
+                <span className={`absolute left-0 bottom-0 block h-px w-4 bg-white transition-transform duration-300 ${open ? '-translate-y-1.5 -rotate-45' : ''}`} />
+              </span>
             </button>
           </div>
         </div>
       </header>
 
-      {/* full-screen mobile menu */}
-      {open && (
-        <div className="fixed inset-0 z-[9940] bg-[#060607]/90 backdrop-blur-2xl flex flex-col justify-center px-8 py-24 overflow-y-auto md:hidden">
-          {nav.map((item, i) => (
-            <div key={item.href} className="line-mask py-1.5">
-              <a
-                href={item.href}
-                onClick={go(item.href)}
-                className="menu-link block display-xl text-[2.25rem] xs:text-5xl font-medium text-white"
-              >
-                <span className="font-mono text-sm accent mr-4">0{i + 1}</span>
-                {item.label}
-              </a>
-            </div>
-          ))}
-          <div className="line-mask mt-12">
+      {/* mobile menu sheet */}
+      <div
+        className={`fixed inset-0 z-[9940] md:hidden bg-[#060607]/95 backdrop-blur-2xl transition-opacity duration-300 ${
+          open ? 'opacity-100' : 'pointer-events-none opacity-0'
+        }`}
+        aria-hidden={!open}
+      >
+        <nav aria-label="Mobile" className="flex h-full flex-col px-6 pt-24 pb-10">
+          {nav.map((item) => (
             <a
-              href={`mailto:${site.email}`}
-              className="menu-link block font-serif-i text-2xl accent"
+              key={item.href}
+              href={item.href}
+              onClick={go(item.href)}
+              tabIndex={open ? 0 : -1}
+              className="border-b border-white/[0.08] py-4 font-display text-2xl font-medium capitalize text-white"
             >
-              {site.email}
+              {item.label}
             </a>
-          </div>
-        </div>
-      )}
-    </div>
+          ))}
+          <a
+            href="/#contact"
+            onClick={go('/#contact')}
+            tabIndex={open ? 0 : -1}
+            className="mt-8 inline-flex h-12 items-center justify-center rounded-full bg-[#ff6a1a] font-medium text-black"
+          >
+            Get a fixed price in 48h
+          </a>
+          <a href={`mailto:${site.email}`} tabIndex={open ? 0 : -1} className="mt-auto text-sm text-zinc-400">
+            {site.email}
+          </a>
+        </nav>
+      </div>
+    </>
   );
 }
