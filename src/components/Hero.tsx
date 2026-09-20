@@ -1,116 +1,79 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
 import { hero } from '../data/site';
 
-const VIDEO_SRC =
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_063509_7d167302-4fd4-480b-8260-18ab572333d4.mp4';
-
+/**
+ * Above the fold. Real-text H1 (what we sell, in buyer words), visible on first
+ * paint: the entrance is CSS-only (transform, never opacity on the text) so LCP
+ * doesn't wait for JavaScript. Background is pure CSS — no video, no image.
+ */
 export default function Hero() {
-  const root = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // intro
-      const tl = gsap.timeline({ delay: 0.2, defaults: { ease: 'expo.out' } });
-      tl.from('.hero-char', {
-        yPercent: 130,
-        rotate: 6,
-        duration: 1.1,
-        stagger: 0.035,
-      }).from('.hero-soft', { y: 28, opacity: 0, duration: 1, stagger: 0.1 }, '-=0.8');
-
-      // animated count-up stats
-      gsap.utils.toArray<HTMLElement>('.stat-num').forEach((el) => {
-        const target = Number(el.dataset.value || 0);
-        const obj = { v: 0 };
-        gsap.to(obj, {
-          v: target,
-          duration: 2,
-          delay: 0.8,
-          ease: 'power3.out',
-          onUpdate: () => {
-            el.textContent = String(Math.round(obj.v));
-          },
-        });
-      });
-    }, root);
-    return () => ctx.revert();
-  }, []);
-
-  const headline = `${hero.titleA} ${hero.titleB}`;
-
   return (
     <section
       id="top"
-      ref={root}
       data-scroll-section
-      className="relative h-[100svh] min-h-[680px] w-full overflow-hidden bg-black"
+      className="relative min-h-[100svh] w-full overflow-hidden bg-[#060607] flex flex-col"
     >
-      <video
-        className="absolute inset-0 w-full h-full object-cover"
-        autoPlay
-        loop
-        muted
-        playsInline
-        src={VIDEO_SRC}
+      {/* aurora + grid backdrop */}
+      <div aria-hidden className="hero-aurora absolute inset-0">
+        <span className="hero-blob hero-blob-a" />
+        <span className="hero-blob hero-blob-b" />
+        <span className="hero-blob hero-blob-c" />
+      </div>
+      <div
+        aria-hidden
+        className="absolute inset-0 grid-bg opacity-40 [mask-image:radial-gradient(70%_60%_at_50%_40%,black,transparent)]"
       />
-      {/* bottom scrim — keeps the lower text legible while the video stays bright up top */}
-      <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#060607] via-[#060607]/70 to-transparent" />
 
-      <div className="relative h-full w-full px-6 md:px-10 flex flex-col justify-end pb-10 md:pb-14">
-        {/* headline */}
-        <h1
-          aria-label={headline}
-          className="display-xl font-bold text-white text-[13.5vw] md:text-[11vw] leading-[0.92] select-none"
-        >
+      <div className="relative flex-1 w-full px-6 md:px-10 pt-32 md:pt-36 pb-14 flex">
+      <div className="w-full max-w-7xl mx-auto flex flex-col justify-center">
+        <div className="hero-in [animation-delay:60ms] label inline-flex items-center gap-3">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full rounded-full bg-[#ff6a1a] opacity-60 motion-safe:animate-ping" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-[#ff6a1a]" />
+          </span>
+          {hero.kicker}
+        </div>
+
+        <h1 className="mt-8 display-xl font-semibold text-white text-[11vw] sm:text-[8.5vw] lg:text-[6.6vw] leading-[0.95] max-w-[16ch] lg:max-w-none">
           <span className="line-mask">
-            <span aria-hidden>
-              {hero.titleA.split('').map((c, i) => (
-                <span key={i} className="hero-char inline-block" aria-hidden>
-                  {c === ' ' ? ' ' : c}
-                </span>
-              ))}
-            </span>
+            <span className="hero-line [animation-delay:120ms]">{hero.titleA}</span>
           </span>
           <span className="line-mask">
-            <span aria-hidden>
-              {hero.titleB.split('').map((c, i) => (
-                <span key={i} className="hero-char inline-block">
-                  {c}
-                </span>
-              ))}
-            </span>
+            <span className="hero-line [animation-delay:220ms]">{hero.titleB}</span>
+          </span>
+          <span className="line-mask">
+            <span className="hero-line [animation-delay:320ms] font-serif-i font-normal accent">{hero.titleC}</span>
           </span>
         </h1>
 
-        <div className="mt-8 md:mt-10 flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <p className="hero-soft max-w-md text-[15px] md:text-base leading-relaxed font-medium text-white">
-            {hero.blurb}
-          </p>
+        <div className="mt-10 flex flex-col lg:flex-row lg:items-end justify-between gap-10">
+          <div className="max-w-xl">
+            <p className="hero-in [animation-delay:420ms] text-base md:text-lg leading-relaxed text-white/80">{hero.blurb}</p>
+            <div className="hero-in [animation-delay:500ms] mt-8 flex flex-wrap gap-3">
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-3 bg-[#ff6a1a] text-black font-medium rounded-full px-7 h-12 text-sm transition-transform duration-500 hover:scale-105"
+              >
+                Get a fixed price in 48h <span aria-hidden>↗</span>
+              </a>
+              <a
+                href="/tools/ai-project-cost-calculator"
+                className="btn-fill inline-flex items-center rounded-full border border-white/25 px-6 h-12 text-sm text-white"
+              >
+                Estimate your project cost
+              </a>
+            </div>
+          </div>
 
-          {/* stats — 2×2 on phones so four columns don't overflow */}
-          <div className="hero-soft grid grid-cols-2 gap-x-8 gap-y-5 sm:flex sm:items-end sm:gap-7 md:gap-10">
+          <dl className="hero-in [animation-delay:580ms] grid grid-cols-2 sm:grid-cols-4 gap-x-8 gap-y-6 lg:gap-x-10">
             {hero.stats.map((s) => (
-              <div key={s.label}>
-                <div className="font-display font-medium text-3xl md:text-5xl tracking-tight text-white">
-                  <span className="stat-num tabular-nums" data-value={s.value}>
-                    0
-                  </span>
-                  <span className="accent">{s.suffix}</span>
-                </div>
-                <div className="font-mono text-[10px] md:text-[11px] uppercase tracking-[0.14em] text-white/80 mt-1.5 max-w-[120px] sm:max-w-[90px] leading-snug">
-                  {s.label}
-                </div>
+              <div key={s.label} className="flex flex-col-reverse border-l border-white/15 pl-4">
+                <dt className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-white/65 max-w-[120px] leading-snug">{s.label}</dt>
+                <dd className="font-display font-medium text-3xl md:text-4xl tracking-tight text-white tabular-nums whitespace-nowrap">{s.value}</dd>
               </div>
             ))}
-          </div>
+          </dl>
         </div>
-
-        {/* scroll cue */}
-        <div className="hero-soft absolute bottom-10 right-6 md:right-10 hidden lg:flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.25em] text-white/50">
-          scroll
-          <span className="block h-10 w-px bg-gradient-to-b from-white/60 to-transparent" />
-        </div>
+      </div>
       </div>
     </section>
   );

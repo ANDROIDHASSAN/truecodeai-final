@@ -49,7 +49,7 @@ export default function Reviews() {
             <div className="label reveal flex items-center gap-3">
               <span className="accent">✦</span> client reviews
             </div>
-            <h2 className="reveal mt-6 display-xl text-4xl md:text-7xl font-medium text-gradient">
+            <h2 className="reveal mt-6 display-xl text-4xl md:text-6xl font-medium text-gradient">
               Don’t take
               <br />
               <span className="font-serif-i accent font-normal">our word for it.</span>
@@ -100,7 +100,7 @@ export default function Reviews() {
                   <div className="font-display font-medium text-white text-sm">
                     {r.name}
                   </div>
-                  <div className="text-xs text-white/45 mt-0.5">{r.role}</div>
+                  <div className="text-xs text-white/60 mt-0.5">{r.role}</div>
                 </div>
               </figcaption>
             </figure>

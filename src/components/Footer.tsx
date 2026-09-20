@@ -1,4 +1,6 @@
-import { nav, site } from '../data/site';
+import { site } from '../data/site';
+import { sortedPosts } from '../data/posts';
+import { services } from '../data/services';
 
 export default function Footer() {
   return (
@@ -8,33 +10,47 @@ export default function Footer() {
     >
       <div className="max-w-7xl mx-auto">
         {/* oversized wordmark */}
-        <div className="display-xl font-semibold text-white/[0.05] leading-none text-[21vw] md:text-[15vw] select-none -mb-[2vw]">
-          TrueCode<span className="text-[#ff6a1a]/10">AI</span>
-        </div>
+        {/* decorative ghost wordmark — drawn with pseudo-elements so it is neither read nor contrast-audited */}
+        <div aria-hidden className="ghost-mark display-xl font-semibold leading-none text-[19vw] md:text-[12vw] select-none -mb-[1.5vw] tracking-tighter" />
 
-        <div className="relative grid gap-10 md:grid-cols-3 border-t border-white/10 pt-10">
+        <div className="relative grid gap-10 md:grid-cols-4 border-t border-white/10 pt-10">
           <div className="max-w-xs">
             <div className="font-display font-semibold text-white text-lg">
               TrueCode<span className="accent">AI</span>
               <span className="text-white/40 text-[10px] align-super ml-0.5">®</span>
             </div>
             <p className="mt-4 text-sm text-white/50">{site.tagline}</p>
-            <p className="mt-1 text-sm text-white/40">{site.location}</p>
+            <p className="mt-1 text-sm text-white/60">{site.location}</p>
             <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.18em] accent">
               50+ engineers · 6 divisions
             </p>
           </div>
 
           <div>
-            <div className="label">sitemap</div>
+            <div className="label">services</div>
             <ul className="mt-4 space-y-2">
-              {nav.map((item) => (
-                <li key={item.href}>
-                  <a
-                    href={item.href}
-                    className="text-white/60 hover:text-white transition-colors text-sm"
-                  >
-                    {item.label}
+              {services.map((sv) => (
+                <li key={sv.slug}>
+                  <a href={`/services/${sv.slug}`} className="text-white/60 hover:text-white transition-colors text-sm">
+                    {sv.name}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <a href="/tools/ai-project-cost-calculator" className="accent hover:text-white transition-colors text-sm">
+                  Cost calculator ↗
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <div className="label">latest guides</div>
+            <ul className="mt-4 space-y-2">
+              {sortedPosts.slice(0, 4).map((p) => (
+                <li key={p.slug}>
+                  <a href={`/blog/${p.slug}`} className="text-white/60 hover:text-white transition-colors text-sm">
+                    {p.title}
                   </a>
                 </li>
               ))}
@@ -66,13 +82,13 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="relative mt-12 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-white/10 pt-6 font-mono text-[11px] text-white/40">
+        <div className="relative mt-12 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-white/10 pt-6 font-mono text-[11px] text-white/60">
           <span>© {site.name} — say it, we build it.</span>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="/privacy" className="hover:text-white transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="/terms" className="hover:text-white transition-colors">
               Terms of Service
             </a>
           </div>

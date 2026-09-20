@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { contact, site } from '../data/site';
 import { useReveal } from '../smooth/SmoothScroll';
+import ContactForm from './ContactForm';
 
 export default function Contact() {
   const root = useRef<HTMLElement>(null);
@@ -17,22 +18,6 @@ export default function Contact() {
       stagger: 0.1,
       immediateRender: false,
     });
-    // slow drift on the giant background word
-    gsap.fromTo(
-      '.cta-ghost',
-      { xPercent: 4 },
-      {
-        xPercent: -4,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: root.current,
-          scroller,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true,
-        },
-      },
-    );
   });
 
   return (
@@ -44,18 +29,15 @@ export default function Contact() {
     >
       <div className="pointer-events-none absolute inset-0 grid-bg opacity-[0.3] [mask-image:radial-gradient(80%_60%_at_50%_40%,black,transparent)]" />
       <div className="orb h-[460px] w-[460px] bg-[#ff6a1a] opacity-10 left-1/2 top-1/3 -translate-x-1/2" />
-      <div className="cta-ghost pointer-events-none absolute top-1/2 -translate-y-1/2 left-0 right-0 text-center display-xl font-semibold text-stroke text-[20vw] select-none whitespace-nowrap opacity-50">
-        SAY IT — WE BUILD IT
-      </div>
 
       <div className="cta-inner relative max-w-4xl mx-auto text-center">
         <div className="cta-el label inline-flex items-center gap-3">
           <span className="accent">✦</span> {contact.kicker}
         </div>
-        <h2 className="cta-el mt-8 display-xl text-5xl md:text-8xl font-medium text-white">
+        <h2 className="cta-el mt-8 display-xl text-4xl md:text-7xl text-white">
           {contact.titleA}
           <br />
-          <span className="font-serif-i accent font-normal text-4xl md:text-7xl">
+          <span className="font-serif-i">
             {contact.titleB}
           </span>
         </h2>
@@ -75,6 +57,10 @@ export default function Contact() {
           >
             {contact.ctaSecondary}
           </a>
+        </div>
+
+        <div className="cta-el mt-16">
+          <ContactForm />
         </div>
 
         <div className="cta-el mt-14 font-mono text-xs text-white/40 tracking-[0.18em] uppercase">

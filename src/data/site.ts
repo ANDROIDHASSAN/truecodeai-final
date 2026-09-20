@@ -7,29 +7,32 @@ export const site = {
   tagline: 'The studio that builds anything.',
   location: 'Nashik, India · Remote-first · Worldwide',
   email: 'hello@truecodeai.com',
-  whatsapp: 'https://wa.me/0000000000',
+  whatsapp: 'https://wa.me/919716978692?text=' + encodeURIComponent('Hi TrueCodeAI, I want to build something. '),
+  phone: '+91 97169 78692',
 };
 
 export const nav = [
-  { label: 'capabilities', href: '#capabilities' },
-  { label: 'work', href: '#work' },
-  { label: 'screens', href: '#screens' },
-  { label: 'team', href: '#team' },
-  { label: 'reviews', href: '#reviews' },
-  { label: 'contact', href: '#contact' },
+  { label: 'services', href: '/services' },
+  { label: 'work', href: '/#work' },
+  { label: 'pricing', href: '/tools/ai-project-cost-calculator' },
+  { label: 'blog', href: '/blog' },
+  { label: 'reviews', href: '/#reviews' },
+  { label: 'contact', href: '/#contact' },
 ];
 
 export const hero = {
-  topline: '50+ engineers · taking new builds',
-  titleA: 'WE CAN BUILD',
-  titleB: 'ANYTHING',
+  kicker: 'AI & software studio · Nashik → worldwide',
+  // Visible H1 = what we sell, in the words buyers search. Keep it keyword-true.
+  titleA: 'AI agents, voice agents',
+  titleB: '& production MVPs',
+  titleC: 'built by fifty engineers.',
   blurb:
-    'Describe it once. Our 50-engineer studio designs it, ships it production-grade, and scales it — startups, MVPs, AI agents, voice automation and custom ML.',
+    'Fixed scope, fixed price, a launch date in writing. We design, build and evaluate AI agents, WhatsApp and voice agents, MVPs and custom ML — and train your team to run them.',
   stats: [
-    { value: 50, suffix: '+', label: 'engineers in-house' },
-    { value: 60, suffix: 'k+', label: 'users on our products' },
-    { value: 6, suffix: '', label: 'specialist divisions' },
-    { value: 24, suffix: 'h', label: 'to project kickoff' },
+    { value: '50+', label: 'engineers in-house' },
+    { value: '60k+', label: 'users on our products' },
+    { value: '48h', label: 'to a fixed-price plan' },
+    { value: '4–8 wk', label: 'typical time to launch' },
   ],
 };
 
@@ -54,6 +57,8 @@ export const manifesto = {
 
 export type Capability = {
   n: string;
+  /** service page this row links to (keyword-anchored internal link) */
+  href: string;
   title: string;
   desc: string;
   tags: string[];
@@ -64,58 +69,83 @@ export const capabilities: Capability[] = [
   {
     n: '01',
     title: 'Startups, end to end',
+    href: '/services/mvp-development',
     desc: 'From first sketch to funded product — strategy, design, engineering, launch. We have shipped our own; we build yours like it is ours.',
     tags: ['Product strategy', 'Brand & UI', 'Full-stack build', 'Launch'],
     image:
-      'https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=1600&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=1200&auto=format&fit=crop',
   },
   {
     n: '02',
     title: 'MVPs at production grade',
+    href: '/services/mvp-development',
     desc: 'The speed of an MVP with the architecture of a real product. Ship in weeks, scale for years — no throwaway code, no rewrite tax.',
     tags: ['Weeks not months', 'Scalable architecture', 'CI/CD from day one'],
     image:
-      'https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?q=80&w=1600&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?q=80&w=1200&auto=format&fit=crop',
   },
   {
     n: '03',
     title: 'Business solutions',
+    href: '/services/ai-automation-services',
     desc: 'Custom systems that remove the bottleneck in your operation — ERPs, CRMs, internal tools, dashboards, integrations.',
     tags: ['Internal tools', 'CRM / ERP', 'Dashboards', 'Integrations'],
     image:
-      'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1600&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1200&auto=format&fit=crop',
   },
   {
     n: '04',
     title: 'AI agents',
+    href: '/services/ai-agent-development',
     desc: 'Autonomous agents that qualify leads, answer support, move tickets and run workflows — wired into the tools you already use.',
     tags: ['Sales & support', 'Multi-agent systems', 'Tool integrations'],
     image:
-      'https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1600&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop',
   },
   {
     n: '05',
     title: 'Voice agents',
+    href: '/services/voice-ai-agent-development',
     desc: 'Phone agents that sound human — they book appointments, qualify callers and follow up, in your brand voice, around the clock.',
     tags: ['Inbound & outbound', '24/7 coverage', 'Human handoff'],
     image:
-      'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=1600&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=1200&auto=format&fit=crop',
   },
   {
     n: '06',
     title: 'AI automation',
+    href: '/services/ai-automation-services',
     desc: 'We map your busywork and delete it — document processing, follow-ups, reporting, scheduling — stitched into one quiet machine.',
     tags: ['Workflow automation', 'Document AI', 'Zero-touch ops'],
     image:
-      'https://images.unsplash.com/photo-1535378917042-10a22c95931a?q=80&w=1600&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1535378917042-10a22c95931a?q=80&w=1200&auto=format&fit=crop',
   },
   {
     n: '07',
     title: 'Custom ML models',
+    href: '/services/custom-ml-model-development',
     desc: 'Models trained on your data, for your exact use case — forecasting, vision, recommendation, risk. Deployed, monitored, retrained.',
     tags: ['Your data', 'Fine-tuning', 'MLOps & monitoring'],
     image:
-      'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1600&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1200&auto=format&fit=crop',
+  },
+  {
+    n: '08',
+    title: 'Agent harnesses & multi-agent systems',
+    href: '/services/ai-agent-development',
+    desc: 'The loop, tools, evals and guardrails around the model — on the Claude Agent SDK, managed agents or your own stack. Orchestrator–worker systems, MCP servers, computer-use agents.',
+    tags: ['Claude Agent SDK', 'MCP servers', 'Evals & observability'],
+    image:
+      'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop',
+  },
+  {
+    n: '09',
+    title: 'AI training for your team',
+    href: '/services/ai-training-for-teams',
+    desc: 'We teach what we build. One- and two-day hands-on workshops on Claude Code, the Agent SDK, MCP, evals and multi-agent design — on your codebase, in your hours.',
+    tags: ['Claude Code rollout', 'Agent SDK workshop', 'Evals workshop'],
+    image:
+      'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1200&auto=format&fit=crop',
   },
 ];
 
@@ -135,7 +165,7 @@ export const projects: Project[] = [
     metric: '50,000+ active users',
     blurb: 'A wedding platform connecting couples with vendors at national scale.',
     image:
-      'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1400&auto=format&fit=crop',
   },
   {
     name: 'Interify',
@@ -143,7 +173,7 @@ export const projects: Project[] = [
     metric: '10,000+ users',
     blurb: 'A CRM built for interior designers to run projects and clients in one place.',
     image:
-      'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1400&auto=format&fit=crop',
   },
   {
     name: 'CupCount',
@@ -151,7 +181,7 @@ export const projects: Project[] = [
     metric: '300+ shop owners',
     blurb: 'A point-of-sale and CRM tailored for neighbourhood chai shops.',
     image:
-      'https://images.unsplash.com/photo-1571934811356-5cc061b6821f?q=80&w=1800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1571934811356-5cc061b6821f?q=80&w=1400&auto=format&fit=crop',
   },
   {
     name: 'WapZio',
@@ -160,7 +190,7 @@ export const projects: Project[] = [
     status: 'building',
     blurb: 'A WhatsApp-first communication tool for businesses that live in chat.',
     image:
-      'https://images.unsplash.com/photo-1611746872915-64382b5c76da?q=80&w=1800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1611746872915-64382b5c76da?q=80&w=1400&auto=format&fit=crop',
   },
   {
     name: 'Nischay Shrivastav',
@@ -168,7 +198,7 @@ export const projects: Project[] = [
     metric: 'Bookings up 3×',
     blurb: 'A cinematic portfolio that turns a photographer’s reel into bookings.',
     image:
-      'https://images.unsplash.com/photo-1502920917128-1aa500764cbd?q=80&w=1800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1502920917128-1aa500764cbd?q=80&w=1400&auto=format&fit=crop',
   },
   {
     name: 'PN Villa',
@@ -176,7 +206,7 @@ export const projects: Project[] = [
     metric: 'OTA fees: ₹0',
     blurb: 'A direct-booking villa site that cuts out the OTA middlemen.',
     image:
-      'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=1800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=1400&auto=format&fit=crop',
   },
 ];
 
@@ -202,7 +232,7 @@ export const team = {
   title: '50 engineers. Six divisions. One team on your build.',
   desc: 'Every project gets a dedicated pod pulled from across the studio — so the same roof covers your frontend, your infra, your model and your security review.',
   image:
-    'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1800&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1400&auto=format&fit=crop',
   divisions: [
     { name: 'Web & Product', count: 14, desc: 'React, Node, mobile, design systems' },
     { name: 'AI & ML', count: 12, desc: 'Agents, LLM apps, custom model training' },
@@ -287,3 +317,32 @@ export const contact = {
   ctaPrimary: 'Start a build',
   ctaSecondary: 'WhatsApp us',
 };
+
+// Homepage FAQ — rendered visibly and emitted as FAQPage JSON-LD for the home route (src/seo.ts).
+// Answer the questions buyers actually type; keep answers short and true.
+export const homeFaq = [
+  {
+    q: 'What does TrueCodeAI build?',
+    a: 'AI agents, WhatsApp and voice agents, production MVPs, MCP servers, custom ML models and back-office automation — plus hands-on AI training for engineering teams. A 50-engineer studio in Nashik, India, working with clients worldwide.',
+  },
+  {
+    q: 'How much does an AI agent or MVP cost?',
+    a: 'Typical fixed-price ranges: WhatsApp agents from about $4k, voice agents from $8k, AI agents from $6k, core MVPs from $25k. Use the cost calculator for a range, or send a three-sentence brief for an exact fixed price within 48 hours.',
+  },
+  {
+    q: 'How long does a project take?',
+    a: 'WhatsApp agents go live in about three weeks, voice agents in four, most AI agents and MVPs in four to eight. The launch date is agreed in writing in the first week.',
+  },
+  {
+    q: 'Do we own the code and the IP?',
+    a: 'Yes. The repository lives in your organisation from the first commit, and IP is assigned to you on payment.',
+  },
+  {
+    q: 'Do you work with clients outside India?',
+    a: 'Yes — most of our clients are in the US, UK, Europe and the Middle East. We keep a fixed daily overlap with your time zone and send written updates every week.',
+  },
+  {
+    q: 'How do you make sure an AI agent is reliable?',
+    a: 'Every agent ships with an eval suite built from your real data, approval gates on irreversible actions, and full tracing. It runs in shadow mode — proposing while your team approves — before it acts alone.',
+  },
+];
