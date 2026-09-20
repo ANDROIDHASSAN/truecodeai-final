@@ -32,7 +32,7 @@ export default function ServicesIndex() {
             </h2>
             <p className="mt-3 text-white/65 leading-relaxed">{s.lede}</p>
             <div className="mt-5 font-mono text-xs uppercase tracking-[0.16em] text-white/60">
-              from <span className="text-white">{s.pricing[0].price.split('–')[0].trim()}</span> · {s.pricing[0].timeline}
+              live in <span className="text-white">{s.pricing[0].timeline}</span> · fixed price in 48h
             </div>
           </a>
         ))}

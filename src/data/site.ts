@@ -327,7 +327,7 @@ export const homeFaq = [
   },
   {
     q: 'How much does an AI agent or MVP cost?',
-    a: 'Typical fixed-price ranges: WhatsApp agents from about $4k, voice agents from $8k, AI agents from $6k, core MVPs from $25k. Use the cost calculator for a range, or send a three-sentence brief for an exact fixed price within 48 hours.',
+    a: 'It depends on scope, integrations and volume, so we do not publish a price list. Send a three-sentence brief and you get a written scope and a fixed price within 48 hours — the number only changes if the scope does. Milestone payments, code in your repo from day one.',
   },
   {
     q: 'How long does a project take?',

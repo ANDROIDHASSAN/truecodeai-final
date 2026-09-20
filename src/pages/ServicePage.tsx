@@ -70,16 +70,15 @@ export default function ServicePage({ service }: { service: Service }) {
       </section>
 
       <section className="max-w-6xl mx-auto px-6 md:px-10 pb-16 prose-dark" aria-labelledby="pricing-h">
-        <h2 id="pricing-h">Pricing</h2>
+        <h2 id="pricing-h">Packages and pricing</h2>
         <div className="table-wrap">
           <table>
-            <caption>Fixed-price ranges, 2026</caption>
+            <caption>Packages, 2026 — each quoted at a fixed price</caption>
             <thead>
               <tr>
                 <th scope="col">Tier</th>
                 <th scope="col">Scope</th>
                 <th scope="col">Timeline</th>
-                <th scope="col">Price</th>
               </tr>
             </thead>
             <tbody>
@@ -88,13 +87,15 @@ export default function ServicePage({ service }: { service: Service }) {
                   <th scope="row">{p.tier}</th>
                   <td>{p.scope}</td>
                   <td>{p.timeline}</td>
-                  <td className="text-white">{p.price}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p>Every project starts with a written scope and a fixed price, delivered within 48 hours of your brief.</p>
+        <p>
+          We do not publish price lists — every project gets a written scope and a fixed price within 48 hours of your
+          brief, and that number does not move unless the scope does.
+        </p>
 
         <h2>Frequently asked questions</h2>
         {service.faq.map((f) => (

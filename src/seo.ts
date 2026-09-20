@@ -228,10 +228,6 @@ export function buildRoutes(): Route[] {
   for (const s of services) {
     const path = `/services/${s.slug}`;
     const crumbs = [HOME, SERVICES, { name: s.name, path }];
-    const prices = s.pricing
-      .map((p) => /\$([\d.]+)k/.exec(p.price)?.[1])
-      .filter(Boolean)
-      .map((n) => Number(n) * 1000);
     routes.push({
       path,
       title: s.title,
@@ -250,9 +246,6 @@ export function buildRoutes(): Route[] {
           description: s.description,
           provider: { '@id': ORG_ID },
           areaServed: 'Worldwide',
-          ...(prices.length
-            ? { offers: { '@type': 'AggregateOffer', priceCurrency: 'USD', lowPrice: Math.min(...prices), highPrice: Math.max(...prices) } }
-            : {}),
         },
         {
           '@type': 'FAQPage',
