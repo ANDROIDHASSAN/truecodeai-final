@@ -12,6 +12,7 @@ import { explainerPosts } from './posts-explainers';
 import { comparePosts } from './posts-compare';
 import { playbookPosts } from './posts-playbooks';
 import { aiEngPosts } from './posts-ai-eng';
+import { jevPosts } from './posts-jev';
 
 export type { Block, Section, Post } from './post-types';
 
@@ -683,6 +684,7 @@ export const posts: Post[] = [
   ...comparePosts,
   ...playbookPosts,
   ...aiEngPosts,
+  ...jevPosts,
 ];
 
 export const postBySlug = (slug: string) => posts.find((p) => p.slug === slug);
